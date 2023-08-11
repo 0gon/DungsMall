@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8" />
+      <title>DungsMall</title>
+      <style>
+         header {
+            padding: 5em;
+            border-bottom: 1px solid black;
+         }
+
+         nav {
+            border-right: 1px solid black;
+            padding: 0px 50px 0px 0px;
+         }
+
+         #container {
+            display: flex;
+         }
+
+         #main {
+            padding: 2em;
+         }
+
+         .input {
+            display: flex;
+            padding: 2% 0;
+         }
+
+         label {
+            display: inline-block;
+            width: 180px;
+         }
+      </style>
+   </head>
+   <body>
+      <header></header>
+      <div id="container">
+         <nav>
+            <ul>
+                <div>
+                    <p>개인정보 변경</p>
+                </div>
+                <div>
+                    <p>개인정보 변경</p>
+                </div>
+            </ul>
+         </nav>
+         <div id="main">
+            <div>
+               <div class="input">
+                  <label for="cur_password">현재 비밀번호</label>
+                  <input type="text" name="cur_password" id="cur_password"/>
+               </div>
+               <div class="input">
+                  <label for="new_password">신규 비밀번호</label>
+                  <input type="text" name="new_password" id="new_password"/>
+               </div>
+               <div class="input">
+                  <label for="confirm_password">신규 비밀번호 재 입력</label>
+                  <input type="text" name="confirm_password" id="confirm_password"/>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <footer></footer>
+   </body>
+</html>
