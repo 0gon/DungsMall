@@ -84,4 +84,7 @@ public class Member {
 			return false;
 		return true;
 	}
+	public boolean matchPassword(String pwd) {
+		return password.equals(pwd);
+	}
 }

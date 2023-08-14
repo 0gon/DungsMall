@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <!DOCTYPE html>
-    <html>
-       <head>
-          <meta charset="UTF-8" />
-          <title>DungsMall</title>
-          <link rel="stylesheet" href="login.css" />
+pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8" />
+      <title>DungsMall</title>
+      <link rel="stylesheet" href="view/member/login/login.css" />
        </head>
        <body>
           <div class="container">
@@ -14,14 +14,14 @@
     
              <!-- Form -->
              <div class="form-div">
-                <form action="" method="post">
+                <form action="login.do" method="post">
                    <!-- email input -->
                    <div class="input__block">
                       <input
-                         type="email"
-                         placeholder="Email"
+                         type="text"
+                         placeholder="Id"
                          class="input"
-                         id="email"
+                         id="id"
                       />
                    </div>
                    <!-- password input -->
@@ -33,19 +33,10 @@
                          id="password"
                       />
                    </div>
-                   <!-- repeat password input
-                   <div class="input__block">
-                      <input
-                         type="password"
-                         placeholder="Repeat password"
-                         class="input repeat__password"
-                         id="repeat__password"
-                      />
-                   </div> -->
                 </form>
              </div>
              <!-- sign in button -->
-             <button class="signin__btn">로그인</button>
+             <button class="signin__btn" id="signinBtn">로그인</button>
              <!-- google button -->
              <button class="google__btn">
                 <i class="fa fa-google"></i>
@@ -85,6 +76,6 @@
              </p>
           </footer>
        </body>
-       <script src="login.js"></script>
+      <script src="view/member/login/login.js"></script>
     </html>
     

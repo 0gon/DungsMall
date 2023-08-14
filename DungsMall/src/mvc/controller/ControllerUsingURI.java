@@ -60,6 +60,7 @@ public class ControllerUsingURI extends HttpServlet {
     private void process(HttpServletRequest request,
     HttpServletResponse response) throws ServletException, IOException {
     	System.out.println("메인 컨트롤러 지남!");
+    	System.out.println(request.getParameter("id"));
 		String command = request.getRequestURI();
 		if (command.indexOf(request.getContextPath()) == 0) {
 			command = command.substring(request.getContextPath().length());

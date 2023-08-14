@@ -13,18 +13,6 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
-	<filter>
-		<filter-name>LogginCheckFilter</filter-name>
-		<filter-class>util.filter.LogginCheckFilter</filter-class>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>LogginCheckFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>
-
 	<servlet>
 		<servlet-name>ControllerUsingURI</servlet-name>
 		<servlet-class>mvc.controller.ControllerUsingURI</servlet-class>
@@ -41,4 +29,14 @@
 		<servlet-name>ControllerUsingURI</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
+	<filter>
+		<filter-name>LogginCheckFilter</filter-name>
+		<filter-class>util.filter.LogginCheckFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>LogginCheckFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
 </web-app>
