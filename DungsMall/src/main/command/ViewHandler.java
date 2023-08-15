@@ -33,14 +33,14 @@ public class ViewHandler implements CommandHandler {
 	private void setItem(HttpServletRequest req, HttpServletResponse res) {
 		Connection conn = null;
 		
-		try {
-			List<Item> items = dao.get(conn);
-			for (int i = 0; i < items.size(); i++) {
-				req.setAttribute("item" + i, items.get(i));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			List<Item> items = dao.get(conn);
+//			for (int i = 0; i < items.size(); i++) {
+//				req.setAttribute("item" + i, items.get(i));
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
