@@ -13,7 +13,7 @@ import mvc.command.CommandHandler;
 import util.dbutil.DBUtil;
 
 public class MainHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/view/main/main.html";
+	private static final String FORM_VIEW = "/view/main/main.jsp";
 	ItemDao dao = new ItemDao();
 
 	@Override
@@ -33,13 +33,16 @@ public class MainHandler implements CommandHandler {
 	}
 	
 	private void setItem(HttpServletRequest req, HttpServletResponse res) {
+		List<Item> itemList = null;
 		try (Connection conn = DBUtil.getConnection()) {
-			List<Item> itemList = dao.getAll(conn);
-			System.out.println(itemList);
+			itemList = dao.getAll(conn);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		req.setAttribute("itemList", itemList);
+		System.out.println(itemList);
 	}
+	
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
 		return FORM_VIEW;
