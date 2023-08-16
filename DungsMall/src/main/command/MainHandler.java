@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import item.dao.ItemDao;
 import item.model.Item;
 import mvc.command.CommandHandler;
+import util.dbutil.DBUtil;
 
 public class MainHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/view/main/main.html";
@@ -19,7 +20,7 @@ public class MainHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("메인핸들러 두겟 지나침!");
-			setItem(req, res);
+//			setItem(req, res);
 			return processForm(req, res);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
 //			return processSubmit(req, res);
@@ -31,12 +32,9 @@ public class MainHandler implements CommandHandler {
 	}
 	
 	private void setItem(HttpServletRequest req, HttpServletResponse res) {
-		Connection conn = null;
-		
-		try {
+		try (Connection conn = DBUtil.getConnection()) {
 			List<Item> itemList = dao.getAll(conn);
-			req.setAttribute("itemList", itemList);
-			System.out.println(req.getAttribute("itemList"));
+			System.out.println(itemList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -22,7 +22,7 @@ public class LogginCheckFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		System.out.println(req.getParameter("id"));
 
-		String excludedPath = "/DungsMall/main";
+		String excludedPath = "/DungsMall/main.do";
 		String excludedPath2 = "/DungsMall/login.do";
 		System.out.println(request.getRequestURI());
 		if (!request.getRequestURI().startsWith(excludedPath)) {

@@ -30,8 +30,6 @@ public class ItemDao {
 				Item item = new Item(name, descript, price, img, origin, weight, unit);
 				list.add(item);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} finally {
 			DBUtil.close(rs);
 			DBUtil.close(stmt);
@@ -57,8 +55,6 @@ public class ItemDao {
 				Item item = new Item(name, descript, price, img, origin, weight, unit);
 				list.add(item);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} finally {
 			DBUtil.close(rs);
 			DBUtil.close(stmt);
@@ -71,8 +67,8 @@ public class ItemDao {
 		ResultSet rs = null;
 		try {
 			stmt = conn.prepareStatement("SELECT * FROM dungsmall.item WHERE name = ?;");
-			rs = stmt.executeQuery();
 			stmt.setString(1, id);
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				String name = rs.getString("name");
 				String descript = rs.getString("descript");
@@ -84,8 +80,6 @@ public class ItemDao {
 				Item item = new Item(name, descript, price, img, origin, weight, unit);
 				return item;
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} finally {
 			DBUtil.close(rs);
 			DBUtil.close(stmt);
