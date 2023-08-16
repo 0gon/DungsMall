@@ -42,7 +42,6 @@ public class LoginHandler implements CommandHandler {
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 
-		System.out.println(req.getParameter("id"));
 		System.out.println(password);
 		
 		if (id == null || id.isEmpty())
