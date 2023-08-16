@@ -71,8 +71,10 @@ pageEncoding="UTF-8"%>
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                <!-- 여기서 jstl로 생성해주기? -->
-                <c:forEach var="article" items="${articlePage.content}"></c:forEach>
+                
+                <c:forEach var="item" items="${MainHandler.itemList}">
+                	
+                </c:forEach>
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->

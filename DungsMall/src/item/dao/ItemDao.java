@@ -21,8 +21,13 @@ public class ItemDao {
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				String name = rs.getString("name");
+				String descript = rs.getString("descript");
 				int price = rs.getInt("price");
-				Item item = new Item(name, price);
+				String img = rs.getString("img");
+				String origin = rs.getString("origin");
+				int weight = rs.getInt("weight");
+				String unit = rs.getString("unit");
+				Item item = new Item(name, descript, price, img, origin, weight, unit);
 				list.add(item);
 			}
 		} catch (SQLException e) {
@@ -34,17 +39,22 @@ public class ItemDao {
 		return list;
 	}
 	
-	public List<Item> get(Connection conn) throws SQLException {
+	public List<Item> getSorted(Connection conn, String order) throws SQLException {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		List<Item> list = new ArrayList<>();
 		try {
-			stmt = conn.prepareStatement("SELECT * FROM dungsmall.item;");
+			stmt = conn.prepareStatement("SELECT * FROM dungsmall.item ORDER BY ?;");
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				String name = rs.getString("name");
+				String descript = rs.getString("descript");
 				int price = rs.getInt("price");
-				Item item = new Item(name, price);
+				String img = rs.getString("img");
+				String origin = rs.getString("origin");
+				int weight = rs.getInt("weight");
+				String unit = rs.getString("unit");
+				Item item = new Item(name, descript, price, img, origin, weight, unit);
 				list.add(item);
 			}
 		} catch (SQLException e) {
@@ -56,16 +66,22 @@ public class ItemDao {
 		return list;
 	}
 	
-	public Item getByName(Connection conn, String name) throws SQLException {
+	public Item getByName(Connection conn, String id) throws SQLException {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = conn.prepareStatement("SELECT * FROM dungsmall.item WHERE name = ?;");
 			rs = stmt.executeQuery();
-			stmt.setString(1, name);
+			stmt.setString(1, id);
 			if (rs.next()) {
+				String name = rs.getString("name");
+				String descript = rs.getString("descript");
 				int price = rs.getInt("price");
-				Item item = new Item(name, price);
+				String img = rs.getString("img");
+				String origin = rs.getString("origin");
+				int weight = rs.getInt("weight");
+				String unit = rs.getString("unit");
+				Item item = new Item(name, descript, price, img, origin, weight, unit);
 				return item;
 			}
 		} catch (SQLException e) {
