@@ -20,9 +20,10 @@ public class MainHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("메인핸들러 두겟 지나침!");
-//			setItem(req, res);
+			setItem(req, res);
 			return processForm(req, res);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
+			System.out.println("포스트맨");
 //			return processSubmit(req, res);
 		} else {
 			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
@@ -43,5 +44,7 @@ public class MainHandler implements CommandHandler {
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
 		return FORM_VIEW;
 	}
+	
+	
 
 }
