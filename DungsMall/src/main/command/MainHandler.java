@@ -11,7 +11,7 @@ import item.dao.ItemDao;
 import item.model.Item;
 import mvc.command.CommandHandler;
 
-public class ViewHandler implements CommandHandler {
+public class MainHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/view/main/main.html";
 	ItemDao dao = new ItemDao();
 
@@ -33,14 +33,13 @@ public class ViewHandler implements CommandHandler {
 	private void setItem(HttpServletRequest req, HttpServletResponse res) {
 		Connection conn = null;
 		
-//		try {
-//			List<Item> items = dao.get(conn);
-//			for (int i = 0; i < items.size(); i++) {
-//				req.setAttribute("item" + i, items.get(i));
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			List<Item> itemList = dao.getAll(conn);
+			req.setAttribute("itemList", itemList);
+			System.out.println(req.getAttribute("itemList"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
