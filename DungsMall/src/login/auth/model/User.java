@@ -1,4 +1,4 @@
-package auth.model;
+package login.auth.model;
 
 public class User {
 	private String id;
