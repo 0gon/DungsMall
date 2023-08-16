@@ -30,8 +30,6 @@ public class ItemDao {
 				Item item = new Item(name, descript, price, img, origin, weight, unit);
 				list.add(item);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} finally {
 			DBUtil.close(rs);
 			DBUtil.close(stmt);
@@ -57,8 +55,6 @@ public class ItemDao {
 				Item item = new Item(name, descript, price, img, origin, weight, unit);
 				list.add(item);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} finally {
 			DBUtil.close(rs);
 			DBUtil.close(stmt);
@@ -84,8 +80,6 @@ public class ItemDao {
 				Item item = new Item(name, descript, price, img, origin, weight, unit);
 				return item;
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} finally {
 			DBUtil.close(rs);
 			DBUtil.close(stmt);
