@@ -87,14 +87,15 @@ public class ItemDao {
 		return null;
 	}
 	
-	public Item selectLikeName(Connection conn, String text) throws SQLException {
+	public List<Item> selectLikeName(Connection conn, String text) throws SQLException {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
+		List<Item> list = new ArrayList<Item>();
 		try {
 			stmt = conn.prepareStatement("SELECT * FROM dungsmall.item where name like '%' || ? || '%';");
 			stmt.setString(1, "%"+text+"%");
 			rs = stmt.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				String name = rs.getString("name");
 				String descript = rs.getString("descript");
 				int price = rs.getInt("price");
@@ -103,12 +104,12 @@ public class ItemDao {
 				int weight = rs.getInt("weight");
 				String unit = rs.getString("unit");
 				Item item = new Item(name, descript, price, img, origin, weight, unit);
-				return item;
+				list.add(item);
 			}
 		} finally {
 			DBUtil.close(rs);
 			DBUtil.close(stmt);
 		}
-		return null;
+		return list;
 	}
 }

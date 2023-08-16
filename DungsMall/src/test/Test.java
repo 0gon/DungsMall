@@ -13,7 +13,7 @@ public class Test {
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			Item item = dao.selectLikeName(conn, "감");
+			Item item = (Item) dao.selectLikeName(conn, "감");
 			System.out.println(item);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

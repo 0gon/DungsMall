@@ -23,7 +23,6 @@ public class MainHandler implements CommandHandler {
 			setItem(req, res);
 			return processForm(req, res);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
-			System.out.println("포스트맨");
 //			return processSubmit(req, res);
 		} else {
 			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
@@ -47,7 +46,5 @@ public class MainHandler implements CommandHandler {
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
 		return FORM_VIEW;
 	}
-	
-	
 
 }

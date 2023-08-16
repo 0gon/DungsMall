@@ -20,7 +20,6 @@ public class LogginCheckFilter implements Filter {
 		System.out.println("--------");
 		System.out.println("로그인 세션 필터 지나침!");
 		HttpServletRequest request = (HttpServletRequest) req;
-		System.out.println(req.getParameter("id"));
 
 		String excludedPath = "/DungsMall/main.do";
 		String excludedPath2 = "/DungsMall/login.do";
@@ -41,14 +40,17 @@ public class LogginCheckFilter implements Filter {
 							}
 						}
 					}
+				} else {
+					System.out.println("로그인쿠키없음!");
+					String loginForm = "/DungsMall/login.do";
+					HttpServletResponse response = (HttpServletResponse) resp;
+					response.sendRedirect(loginForm);
+					return;
 				}
-				System.out.println("로그인쿠키없음!");
-				String loginForm = "/DungsMall/view/member/login/login.jsp";
-				request.getRequestDispatcher(loginForm).forward(req, resp);
-				return;
 			}
+		} else {
+			System.out.println("쿠키체크 안함!");
+			chain.doFilter(req, resp);
 		}
-		System.out.println("쿠키체크 안함!");
-		chain.doFilter(req, resp);
 	}
 }

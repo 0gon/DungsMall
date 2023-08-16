@@ -12,16 +12,17 @@ import util.dbutil.DBUtil;
 public class SearchService {
 	ItemDao dao = new ItemDao();
 	
-	public void search(String text) {
-		List<Item> list = new ArrayList<>();
+	public List<Item> search(String text) {
+		List<Item> list = null;
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			dao.selectLikeName(conn, text);
+			list = dao.selectLikeName(conn, text);
 		} catch (SQLException e) {
 			throw new RuntimeException();
 		} finally {
 			DBUtil.close(conn);
 		}
+		return list;
 	}
 }
