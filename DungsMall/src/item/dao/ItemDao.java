@@ -71,8 +71,8 @@ public class ItemDao {
 		ResultSet rs = null;
 		try {
 			stmt = conn.prepareStatement("SELECT * FROM dungsmall.item WHERE name = ?;");
-			rs = stmt.executeQuery();
 			stmt.setString(1, id);
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				String name = rs.getString("name");
 				String descript = rs.getString("descript");
@@ -86,6 +86,31 @@ public class ItemDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBUtil.close(rs);
+			DBUtil.close(stmt);
+		}
+		return null;
+	}
+	
+	public Item selectLikeName(Connection conn, String text) throws SQLException {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.prepareStatement("SELECT * FROM dungsmall.item where name like '%' || ? || '%';");
+			stmt.setString(1, "%"+text+"%");
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				String name = rs.getString("name");
+				String descript = rs.getString("descript");
+				int price = rs.getInt("price");
+				String img = rs.getString("img");
+				String origin = rs.getString("origin");
+				int weight = rs.getInt("weight");
+				String unit = rs.getString("unit");
+				Item item = new Item(name, descript, price, img, origin, weight, unit);
+				return item;
+			}
 		} finally {
 			DBUtil.close(rs);
 			DBUtil.close(stmt);

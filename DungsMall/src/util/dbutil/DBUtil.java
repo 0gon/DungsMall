@@ -13,6 +13,27 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 public class DBUtil {
 	private static DataSource ds;
+	public static void main(String[] args) {
+		try {
+			Properties prop = new Properties();
+			ClassLoader classLoader = DBUtil.class.getClassLoader();
+			prop.load(classLoader.getResourceAsStream("dungsmall.properties"));
+
+			BasicDataSource basic = new BasicDataSource();
+			basic.setUrl(prop.getProperty("jdbcURL"));
+			basic.setDriverClassName(prop.getProperty("jdbcDriverName"));
+			basic.setUsername(prop.getProperty("jdbcUserName"));
+			basic.setPassword(prop.getProperty("jdbcPassword"));
+			System.out.println(prop.getProperty("jdbcURL"));
+			
+			
+			
+			
+			ds = basic;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	static {
 		try {
