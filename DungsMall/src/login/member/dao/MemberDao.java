@@ -1,11 +1,11 @@
-package member.dao;
+package login.member.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import member.model.Member;
+import login.member.model.Member;
 import util.dbutil.DBUtil;
 
 public class MemberDao {

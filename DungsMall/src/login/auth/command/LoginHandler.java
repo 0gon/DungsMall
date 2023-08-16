@@ -1,4 +1,4 @@
-package auth.command;
+package login.auth.command;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,9 +8,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import auth.model.User;
-import auth.service.LoginService;
-import member.service.LoginFailException;
+import login.auth.model.User;
+import login.auth.service.LoginService;
+import login.member.service.LoginFailException;
 import mvc.command.CommandHandler;
 
 public class LoginHandler implements CommandHandler {

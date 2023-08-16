@@ -1,12 +1,12 @@
-package auth.service;
+package login.auth.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import auth.model.User;
-import member.dao.MemberDao;
-import member.model.Member;
-import member.service.LoginFailException;
+import login.auth.model.User;
+import login.member.dao.MemberDao;
+import login.member.model.Member;
+import login.member.service.LoginFailException;
 import util.dbutil.DBUtil;
 
 public class LoginService {
