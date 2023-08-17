@@ -9,7 +9,7 @@ pageEncoding="UTF-8" %>
     <title>DungsShop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="stylesheet" href="view/main/main.css">
+    <link rel="stylesheet" href="view/style/header.css">
    </head>
    <body>
    		  <header>
@@ -43,15 +43,15 @@ pageEncoding="UTF-8" %>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
                     aria-label="Slide 3"></button>
             </div>
-            <div class="carousel-inner">
+            <div class="carousel-inner" style="height: 40vw; object-fit: scale-down;">
                 <div class="carousel-item active">
-                    <img src="view/main/img/salt.jpg" class="d-block w-100" alt="...">
+                    <img src="images/main-salt.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="view/main/img/vegetable.jpg" class="d-block w-100" alt="...">
+                    <img src="images/main-vegetable.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="view/main/img/waffle.jpg" class="d-block w-100" alt="...">
+                    <img src="images/main-waffle.jpg" class="d-block w-100" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"

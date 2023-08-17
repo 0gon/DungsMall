@@ -84,11 +84,6 @@ header {
   transition: 0.7s;
 }
 
-.carousel-inner {
-  height: 40vw;
-  object-fit: scale-down;
-}
-
 #goChat {
   position: absolute;
   top: 50%;
