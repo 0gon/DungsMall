@@ -12,7 +12,7 @@ pageEncoding="UTF-8" %>
     <link rel="stylesheet" href="view/style/header.css">
    </head>
    <body>
-   		  <header>
+   	<header>
         <div id="logo">dungs</div>
         <div class="cart">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 38 31" fill="none">
@@ -65,7 +65,7 @@ pageEncoding="UTF-8" %>
                 <span class="visually-hidden">Next</span>
             </button>
             <button type="button" id="goChat" class="btn btn-dark btn-lg"
-                onclick="location.href='http://localhost:8080/foodChatBot/chat.html'">DUNG에게 음식 추천 받으러가기</button>
+                onclick="location.href='/foodChatBot/chat.html'">DUNG에게 음식 추천 받으러가기</button>
         </div>
     </main>
     <section class="py-5">
@@ -75,7 +75,7 @@ pageEncoding="UTF-8" %>
                 <c:forEach var="item" items="${itemList}">
                 <div class="col mb-5">
                     <div class="card h-100">
-                        <img class="card-img-top" src="http://localhost:8080/${item.img}" alt="이미지" />
+                        <img class="card-img-top" src="/${item.img}" alt="이미지" />
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <h5 class="fw-bolder">${item.name}</h5>
@@ -84,38 +84,16 @@ pageEncoding="UTF-8" %>
                             </div>
                         </div>
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">카트에 담기</a>
+                            <div class="text-center">
+                            <form action="/DungsMall/detail.do" method="post">
+                        	<input type="hidden" name="name" value="${item.name}" />
+                            <button type="submit" class="btn btn-outline-dark mt-auto" value="buy">자세히 보기</button>
+                            </form>
                             </div>
                         </div>
                     </div>
                 </div>
                 </c:forEach>
-                <!-- 세일되는 메뉴는 이렇게 표시 -->
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
-                        </div>
-                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <h5 class="fw-bolder">세일될 메뉴</h5>
-                                <div class="d-flex justify-content-center small text-warning mb-2">
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                </div>
-                                <span class="text-muted text-decoration-line-through">4000 ₩</span>
-                                2000 ₩
-                            </div>
-                        </div>
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">옵션 보기</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
