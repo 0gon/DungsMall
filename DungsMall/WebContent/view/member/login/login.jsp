@@ -38,7 +38,7 @@ pageEncoding="UTF-8"%>
              <!-- sign in button -->
              <button class="signin__btn" id="signinBtn">로그인</button>
              <!-- google button -->
-             <button class="google__btn">
+             <button class="google__btn" id="google__btn">
                 <i class="fa fa-google"></i>
                 회원가입
              </button>

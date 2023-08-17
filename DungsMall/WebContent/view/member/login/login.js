@@ -17,7 +17,7 @@ signinBtn.addEventListener('click', () => {
 	console.log(id);
 	console.log(password);
 
-    fetch('http://localhost:8080/TestProject/test', {
+    fetch('http://localhost:8080/DungsMall/main.do', {
         method: 'POST',
         headers: headers, 
         body: formData
@@ -26,5 +26,10 @@ signinBtn.addEventListener('click', () => {
     .then(data => {
         console.log('Response:', data);
         // 여기서 필요한 작업 수행
+        console.log(formData);
     })
+});
+
+document.getElementById("google__btn").addEventListener("click", () => {
+    window.location.href = "http://localhost:8080/DungsMall/join.do";
 });

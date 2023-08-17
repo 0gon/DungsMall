@@ -7,11 +7,13 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+@WebFilter(urlPatterns = { "", "", "" })
 public class LogginCheckFilter implements Filter {
 
 	@Override
@@ -20,37 +22,27 @@ public class LogginCheckFilter implements Filter {
 		System.out.println("--------");
 		System.out.println("로그인 세션 필터 지나침!");
 		HttpServletRequest request = (HttpServletRequest) req;
-
-		String excludedPath = "/DungsMall/main.do";
-		String excludedPath2 = "/DungsMall/login.do";
 		System.out.println(request.getRequestURI());
-		if (!request.getRequestURI().startsWith(excludedPath)) {
-			if (!request.getRequestURI().startsWith(excludedPath2)) {
 
-				HttpSession session = request.getSession();
-				String sessionId = session.getId();
+		HttpSession session = request.getSession();
+		String sessionId = session.getId();
 
-				Cookie[] cookies = request.getCookies();
-				if (cookies != null) {
-					for (Cookie cookie : cookies) {
-						if (cookie.getName().equals("logging")) {
-							if (cookie.getValue().equals(sessionId)) {
-								System.out.println("로그인쿠키있음!");
-								chain.doFilter(req, resp);
-							}
-						}
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("logging")) {
+					if (cookie.getValue().equals(sessionId)) {
+						System.out.println("로그인쿠키있음!");
+						chain.doFilter(req, resp);
+						return;
 					}
-				} else {
-					System.out.println("로그인쿠키없음!");
-					String loginForm = "/DungsMall/login.do";
-					HttpServletResponse response = (HttpServletResponse) resp;
-					response.sendRedirect(loginForm);
-					return;
 				}
 			}
-		} else {
-			System.out.println("쿠키체크 안함!");
-			chain.doFilter(req, resp);
 		}
+		System.out.println("로그인쿠키없음!");
+		String loginForm = "/DungsMall/login.do";
+		HttpServletResponse response = (HttpServletResponse) resp;
+		response.sendRedirect(loginForm);
+		return;
 	}
 }

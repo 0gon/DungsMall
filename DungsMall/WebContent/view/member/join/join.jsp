@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
    <head>
       <meta charset="UTF-8" />
       <title>DungsMall</title>
-      <link rel="stylesheet" href="join.css" />
+      <link rel="stylesheet" href="view/member/join/join.css" />
    </head>
    <body>
       <div class="container">
@@ -80,5 +80,5 @@ pageEncoding="UTF-8"%>
          <p>aaa</p>
       </footer>
    </body>
-   <script src="join.js"></script>
+   <script src="view/member/join/join.js"></script>
 </html>

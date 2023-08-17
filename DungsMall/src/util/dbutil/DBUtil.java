@@ -13,6 +13,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 public class DBUtil {
 	private static DataSource ds;
+
 	public static void main(String[] args) {
 		try {
 			Properties prop = new Properties();
@@ -25,16 +26,13 @@ public class DBUtil {
 			basic.setUsername(prop.getProperty("jdbcUserName"));
 			basic.setPassword(prop.getProperty("jdbcPassword"));
 			System.out.println(prop.getProperty("jdbcURL"));
-			
-			
-			
-			
+
 			ds = basic;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	static {
 		try {
 			Properties prop = new Properties();
@@ -52,7 +50,7 @@ public class DBUtil {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void forTest() {
 		try {
 			Properties prop = new Properties();
@@ -74,7 +72,7 @@ public class DBUtil {
 	public static Connection getConnection() throws SQLException {
 		return ds.getConnection();
 	}
-	
+
 	public static void close(Connection conn) {
 		if (conn != null) {
 			try {
@@ -84,6 +82,7 @@ public class DBUtil {
 			}
 		}
 	}
+
 	public static void close(Statement stmt) {
 		if (stmt != null) {
 			try {
@@ -93,6 +92,7 @@ public class DBUtil {
 			}
 		}
 	}
+
 	public static void close(ResultSet rs) {
 		if (rs != null) {
 			try {
@@ -102,16 +102,13 @@ public class DBUtil {
 			}
 		}
 	}
-	
+
+	public static void rollback(Connection conn) {
+		if (conn != null) {
+			try {
+				conn.rollback();
+			} catch (SQLException ex) {
+			}
+		}
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
