@@ -39,9 +39,9 @@ public class SearchHandler implements CommandHandler {
 	}
 
 	private void setItem(HttpServletRequest req, HttpServletResponse res) {
-		Connection conn = null;
-		//String text = (String) req.getAttribute("search");
-		String text = "감";
+		String text = (String) req.getParameter("search");
+		System.out.println(text);
+//		String text = "감";
 		List<Item> list = ss.search(text);
 		req.setAttribute("list", list);
 	}
