@@ -2,6 +2,7 @@
 *공용*
 집에서 할 때 db properties 잘 수정해서 사용하기
 주소 만들면 commandHandler properties에 추가하기
+joinhandler 56줄 주소
 
 *부탁할 목록*
 사라씨 헤더 css 올려주세요
@@ -10,3 +11,4 @@
 loginHandler 의 60줄 수정 필요
 로그인 필요한 페이지는 loggingcheckfilter에 주소 넣기
 회원가입 db 잘 되는가 만들어보기
+join.js 아이디중복체크 비동기 할까 고민좀 해보기

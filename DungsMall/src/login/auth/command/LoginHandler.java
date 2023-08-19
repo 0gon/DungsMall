@@ -42,8 +42,6 @@ public class LoginHandler implements CommandHandler {
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 
-		System.out.println(password);
-		
 		if (id == null || id.isEmpty())
 			errors.put("id", Boolean.TRUE);
 		if (password == null || password.isEmpty())
@@ -57,7 +55,7 @@ public class LoginHandler implements CommandHandler {
 			User user = loginService.login(id, password);
 			setCookie(req, res);
 			System.out.println("로그인 성공함!");
-			res.sendRedirect(req.getContextPath() + "/index.jsp");
+			res.sendRedirect(req.getContextPath() + "/main.do");
 			return null;
 		} catch (LoginFailException e) {
 			errors.put("idOrPwNotMatch", Boolean.TRUE);

@@ -15,7 +15,7 @@ public class MemberDao {
 		ResultSet rs = null;
 		try {
 			stmt = conn.prepareStatement(
-					"select * from member where memberid = ?");
+					"select * from member where id = ?");
 			stmt.setString(1, id);
 			rs = stmt.executeQuery();
 			Member member = null;

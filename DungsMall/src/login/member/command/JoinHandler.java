@@ -1,5 +1,6 @@
 package login.member.command;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class JoinHandler implements CommandHandler {
 
 	private static final String FORM_VIEW = "/view/member/join/join.jsp";
 	private JoinService joinService = new JoinService();
-	
+
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -38,23 +39,29 @@ public class JoinHandler implements CommandHandler {
 		joinReq.setName(req.getParameter("name"));
 		joinReq.setPassword(req.getParameter("password"));
 		joinReq.setConfirmPassword(req.getParameter("confirmPassword"));
-		
+		joinReq.setEmail(req.getParameter("email"));
+
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
-		
+
 		joinReq.validate(errors);
-		
+		System.out.println("조인에러" + errors);
+
 		if (!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		
+
 		try {
 			joinService.join(joinReq);
-			return "/view/member/login/login.jsp";
+			res.sendRedirect("http://localhost:8080/DungsMall/main.do");
 		} catch (DuplicateIdException e) {
 			errors.put("duplicateId", Boolean.TRUE);
 			return FORM_VIEW;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		return null;
 	}
 
 }

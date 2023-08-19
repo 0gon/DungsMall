@@ -1,4 +1,4 @@
-const signinBtn = document.getElementById('signinBtn');
+/*const signinBtn = document.getElementById('signinBtn');
 console.log(signinBtn);
 console.log("js잘됨");
 signinBtn.addEventListener('click', () => {
@@ -33,3 +33,4 @@ signinBtn.addEventListener('click', () => {
 document.getElementById("google__btn").addEventListener("click", () => {
     window.location.href = "http://localhost:8080/DungsMall/join.do";
 });
+*/
