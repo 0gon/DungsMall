@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -113,7 +114,7 @@
                     <li>(대구, 부산, 울산 배송 운영시간 별도 확인)</li>
                   </ul>
 
-                  <form method="GET">
+                  <form method="POST">
                     <input
                       type="hidden"
                       name="name"
@@ -170,7 +171,7 @@
                           class="btn btn-warning btn-lg"
                           name="submit"
                           value="addtocart"
-                          formaction="/DungsMall/detail.do"
+                          formaction="/DungsMall/cart.do"
                         >
                           장바구니
                         </button>
