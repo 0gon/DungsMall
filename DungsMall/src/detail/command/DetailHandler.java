@@ -1,5 +1,6 @@
 package detail.command;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,29 +31,31 @@ public class DetailHandler implements CommandHandler {
 		return FORM_VIEW;
 	}
 	
-	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws UnsupportedEncodingException {
-//		String count = req.getParameter("count");
-//		System.out.println(count);
-//		// 있으면 담는 동작
-//		if (count != null) {
-//			String login = req.getAttribute("login");
-//			// 없으면 로그인화면으로
-//			if (login == null) {
-//				
-//			} else { // 있으면 담기
-//				
-//			}
-//		}
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		setItem(req, res);
+		String name = req.getParameter("name");
+		String count = req.getParameter("count");
+		if (count != null) {
+			if (req.getAttribute("login") == null) {
+				res.sendRedirect(req.getContextPath() + "/login.do");
+				return null;
+			} else if ((boolean) req.getAttribute("login")) { 
+						// id 가져오기
+				ds.insert("dudrhs", name, Integer.valueOf(count));
+				if (req.getParameter("submit").equals("buy")) {
+					res.sendRedirect(req.getContextPath() + "/cart.do");
+					return null;
+				}
+			}
+		}
 		return FORM_VIEW;
 	}
 
 	private void setItem(HttpServletRequest req, HttpServletResponse res) throws UnsupportedEncodingException {
 		req.setCharacterEncoding("UTF-8");
-		String text = req.getParameter("name");
-		Item item = ds.initPage(text);
-		System.out.println(item.toString());
+		String name = req.getParameter("name");
+		Item item = ds.initPage(name);
 		req.setAttribute("item", item);
 	}
-
+	
 }
