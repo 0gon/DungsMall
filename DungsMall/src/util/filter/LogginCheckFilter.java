@@ -33,6 +33,7 @@ public class LogginCheckFilter implements Filter {
 				if (cookie.getName().equals("logging")) {
 					if (cookie.getValue().equals(sessionId)) {
 						System.out.println("로그인쿠키있음!");
+						req.setAttribute("login", true);
 						chain.doFilter(req, resp);
 						return;
 					}
@@ -40,9 +41,7 @@ public class LogginCheckFilter implements Filter {
 			}
 		}
 		System.out.println("로그인쿠키없음!");
-		String loginForm = "/DungsMall/login.do";
-		HttpServletResponse response = (HttpServletResponse) resp;
-		response.sendRedirect(loginForm);
+		chain.doFilter(req, resp);
 		return;
 	}
 }
