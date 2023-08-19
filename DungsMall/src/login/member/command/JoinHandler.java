@@ -53,7 +53,7 @@ public class JoinHandler implements CommandHandler {
 
 		try {
 			joinService.join(joinReq);
-			res.sendRedirect("http://localhost:8080/DungsMall/main.do");
+			res.sendRedirect(req.getContextPath() + "/main.do");
 		} catch (DuplicateIdException e) {
 			errors.put("duplicateId", Boolean.TRUE);
 			return FORM_VIEW;

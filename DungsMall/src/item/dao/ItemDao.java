@@ -92,7 +92,7 @@ public class ItemDao {
 		ResultSet rs = null;
 		List<Item> list = new ArrayList<Item>();
 		try {
-			stmt = conn.prepareStatement("SELECT * FROM dungsmall.item where name like '%' || ? || '%';");
+			stmt = conn.prepareStatement("SELECT * FROM dungsmall.item where name like ?;");
 			stmt.setString(1, "%"+text+"%");
 			rs = stmt.executeQuery();
 			while (rs.next()) {
