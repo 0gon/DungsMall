@@ -40,7 +40,6 @@ public class DetailHandler implements CommandHandler {
 //			if (login == null) {
 //				
 //			} else { // 있으면 담기
-//				
 //			}
 //		}
 		setItem(req, res);

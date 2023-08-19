@@ -56,9 +56,7 @@
 										<h5> ${item.name}</h5>
 									</td>
 									<td class="shoping__cart__price">${item.price}원</td>
-									<td class="shoping__cart__quantity"> 
-										
-									</td>
+									<td class="shoping__cart__quantity">${count}</td>
 									<td id="total1" class="shoping__cart__total"></td>
 									<td>
 										<button class="shoping__cart__quantity__delete"
