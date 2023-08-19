@@ -43,6 +43,7 @@ public class LogoutHandler implements CommandHandler {
 				if (cookie.getName().equals(cookieName)) {
 					cookie.setMaxAge(0); // 쿠키의 만료 시간을 0으로 설정하여 삭제합니다.
 					response.addCookie(cookie);
+					System.out.println("쿠키" + cookie.getName());
 					break;
 				}
 			}
