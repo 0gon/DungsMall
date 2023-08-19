@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,7 +37,12 @@
             </button>
         </div>
         </form>
-        <button class="login-button" onclick="location.href='/DungsMall/login.do'">로그인</button>
+        <c:if test="${empty login}">
+        	<button class="login-button" onclick="location.href='/DungsMall/login.do'">로그인</button>
+        </c:if>
+        <c:if test="${login eq 'true'}">
+        	<button class="login-button" onclick="location.href='/DungsMall/logout.do'">로그아웃</button>
+        </c:if>
     </header>
     <main>
       <section class="bg-light">
@@ -107,7 +113,7 @@
                     <li>(대구, 부산, 울산 배송 운영시간 별도 확인)</li>
                   </ul>
 
-                  <form action="" method="GET">
+                  <form method="GET">
                     <input
                       type="hidden"
                       name="name"
@@ -153,6 +159,7 @@
                           class="btn btn-warning btn-lg"
                           name="submit"
                           value="buy"
+                          formaction=""
                         >
                           구매
                         </button>
@@ -162,7 +169,8 @@
                           type="submit"
                           class="btn btn-warning btn-lg"
                           name="submit"
-                          value="addtocard"
+                          value="addtocart"
+                          formaction="/DungsMall/detail.do"
                         >
                           장바구니
                         </button>

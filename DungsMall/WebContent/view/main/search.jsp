@@ -33,7 +33,12 @@ pageEncoding="UTF-8" %>
             </button>
         </div>
         </form>
-        <button class="login-button" onclick="location.href='/DungsMall/login.do'">로그인</button>
+        <c:if test="${empty login}">
+        	<button class="login-button" onclick="location.href='/DungsMall/login.do'">로그인</button>
+        </c:if>
+        <c:if test="${login eq 'true'}">
+        	<button class="login-button" onclick="location.href='/DungsMall/logout.do'">로그아웃</button>
+        </c:if>
     </header>
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
