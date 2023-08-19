@@ -11,7 +11,7 @@ import mvc.command.CommandHandler;
 import search.service.SearchService;
 
 public class SearchHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/view/search/search.jsp";
+	private static final String FORM_VIEW = "/view/main/search.jsp";
 	SearchService ss = new SearchService();
 
 	@Override
