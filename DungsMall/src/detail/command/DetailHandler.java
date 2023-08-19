@@ -35,7 +35,7 @@ public class DetailHandler implements CommandHandler {
 //		System.out.println(count);
 //		// 있으면 담는 동작
 //		if (count != null) {
-//			String login = req.getParameter("login");
+//			String login = req.getAttribute("login");
 //			// 없으면 로그인화면으로
 //			if (login == null) {
 //				
