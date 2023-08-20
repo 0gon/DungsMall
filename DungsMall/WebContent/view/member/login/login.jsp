@@ -45,25 +45,35 @@
 				</c:if>
 			</header>
 			<main>
-				<div class="form-div">
-					<form method="post">
-						<div class="input__block">
-							<input type="text" placeholder="Id" class="input" id="id" name="id" />
+				<!-- 로그인 창 -->
+				<div class="container mt-5">
+					<div class="row justify-content-center">
+						<div class="col-mt-6">
+							<div class="card p-4">
+								<form method="post">
+									<div class="mb-3">
+										<label for="id" class="form-label">아이디</label>
+										<input type="text" class="form-control" id="id" name="id" required>
+									</div>
+									<div class="mb-3">
+										<label for="password" class="form-label">비밀번호</label>
+										<input type="password" class="form-control" id="password" name="password"
+											required>
+									</div>
+									<div class="mb-3">
+										<div class="d-grid gap-2">
+											<input class="btn btn-warning" type="submit" style="font-weight: bold;"
+												value="로그인"></input>
+										</div>
+									</div>
+								</form>
+								<button class="btn btn-warning" type="button" style="font-weight: bold;"
+									onclick="location.href='/DungsMall/join.do'">회원가입</button>
+
+							</div>
 						</div>
-						<div class="input__block">
-							<input type="password" placeholder="Password" class="input" id="password" name="password" />
-						</div>
-						<div>
-							<input type="submit" class="signin__btn" id="signinBtn" value="로그인"></input>
-						</div>
-					</form>
+					</div>
 				</div>
-				<button class="google__btn" id="google__btn" onclick="location.href='/DungsMall/join.do'">
-					<i class="fa fa-google"></i> 회원가입
-				</button>
-				<button class="github__btn">
-					<i class="fa fa-github"></i> 임시버튼
-				</button>
 			</main>
 
 		</body>
