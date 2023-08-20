@@ -52,7 +52,7 @@ public class LoginHandler implements CommandHandler {
 		}
 
 		try {
-			User user = loginService.login(id, password);
+			loginService.login(req, id, password);
 			setCookie(req, res);
 			System.out.println("로그인 성공함!");
 			res.sendRedirect(req.getContextPath() + "/main.do");

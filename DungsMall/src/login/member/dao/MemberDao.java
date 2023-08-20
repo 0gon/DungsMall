@@ -47,4 +47,17 @@ public class MemberDao {
 			DBUtil.close(stmt);
 		}
 	}
+
+	public int updateSessionId(Connection conn, String sessionId, String id) throws SQLException {
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement(
+					"UPDATE `dungsmall`.`member` SET `sessionid` = ? WHERE (`id` = ?);");
+			stmt.setString(1, sessionId);
+			stmt.setString(2, id);
+			return stmt.executeUpdate();
+		} finally {
+			DBUtil.close(stmt);
+		}
+	}
 }
