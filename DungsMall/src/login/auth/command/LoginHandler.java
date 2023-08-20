@@ -72,8 +72,8 @@ public class LoginHandler implements CommandHandler {
 		Cookie cookie = new Cookie("logging", sessionId); // 쿠키 이름 지정하여 생성( key, value 개념)
 		// cookie.setSecure(true); // https 연결에서면 쿠키 전송
 		cookie.setHttpOnly(true); // js접근 불가 설정
-		cookie.setMaxAge(60 * 60); // 쿠키 유효 기간 1시간
 		cookie.setPath("/"); // 모든 경로에서 접근 가능하도록 설정
+		cookie.setMaxAge(60 * 60); // 쿠키 유효 기간 1시간
 		res.addCookie(cookie); // response에 Cookie 추가
 	}
 }

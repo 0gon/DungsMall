@@ -23,7 +23,7 @@ public class LogoutHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		deleteCookie(req, res);
+		deleteCookie(res);
 		try {
 			res.sendRedirect(req.getContextPath() + "/main.do");
 		} catch (IOException e) {
@@ -33,20 +33,10 @@ public class LogoutHandler implements CommandHandler {
 		return null;
 	}
 
-	private void deleteCookie(HttpServletRequest request, HttpServletResponse response) {
-		// 쿠키 이름으로 삭제할 쿠키를 찾습니다.
-		String cookieName = "logging"; // 여기에 삭제할 쿠키의 이름을 넣어주세요.
-		Cookie[] cookies = request.getCookies();
-
-		if (cookies != null) {
-			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals(cookieName)) {
-					cookie.setMaxAge(0); // 쿠키의 만료 시간을 0으로 설정하여 삭제합니다.
-					response.addCookie(cookie);
-					System.out.println("쿠키" + cookie.getName());
-					break;
-				}
-			}
-		}
+	public void deleteCookie(HttpServletResponse res) {
+		Cookie cookie = new Cookie("logging", null); // 삭제할 쿠키에 대한 값을 null로 지정
+		cookie.setPath("/"); // 모든 경로에서 접근 가능하도록 설정
+		cookie.setMaxAge(0); // 유효시간을 0으로 설정해서 바로 만료시킨다.
+		res.addCookie(cookie); // 응답에 추가해서 없어지도록 함
 	}
 }
