@@ -35,7 +35,7 @@ public class ReceiptHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		setItem(req, res);
+		//setItem(req, res);
 		return FORM_VIEW;
 	}
 	

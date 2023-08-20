@@ -59,6 +59,7 @@ public class LoginHandler implements CommandHandler {
 			return null;
 		} catch (LoginFailException e) {
 			errors.put("idOrPwNotMatch", Boolean.TRUE);
+			req.setAttribute("loginFail", true);
 			return FORM_VIEW;
 		}
 	}
