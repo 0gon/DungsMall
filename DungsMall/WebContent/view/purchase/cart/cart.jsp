@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="view/purchase/cart/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="view/purchase/cart/style.css" type="text/css">
 <script type="text/javascript" src=view/purchase/cart/cart.js></script>
+
 </head>
 
 <body>
@@ -49,20 +50,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td><input type="checkbox" data-row="1"
-										onchange="toggleCheckbox(this)"></td>
-									<td class="shoping__cart__item">
-										<h5> ${item.name}</h5>
-									</td>
-									<td class="shoping__cart__price">${item.price}원</td>
-									<td class="shoping__cart__quantity">${count}</td>
-									<td id="total1" class="shoping__cart__total"></td>
-									<td>
-										<button class="shoping__cart__quantity__delete"
-											onclick="deleteRow(this)">x</button>
-									</td>
-								</tr>
+								<c:forEach items="${basketList}" var="item">
+                                    <tr>
+                                        <td><input type="checkbox" data-row="1" onchange="toggleCheckbox(this)"></td>
+                                        <td class="shoping__cart__item">
+                                            <h5>${item.name}</h5>
+                                        </td>
+                                        <td class="shoping__cart__price">${item.price}원</td>
+                                        <td class="shoping__cart__quantity">${item.count}</td>
+                                        <td class="shoping__cart__total">${item.price * item.count}원</td>
+                                        <td>
+                                            <button class="shoping__cart__quantity__delete" onclick="deleteRow(this)">x</button>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
 							</tbody>
 						</table>
 					</div>

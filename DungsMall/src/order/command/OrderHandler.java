@@ -1,25 +1,19 @@
-package cart.command.copy;
-
-import java.io.UnsupportedEncodingException;
+package order.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import detail.service.DetailService;
-import item.model.Item;
 import mvc.command.CommandHandler;
 
-public class CartHandler implements CommandHandler {
-	private static final String FORM_VIEW = "view/purchase/cart/cart.jsp";
-	DetailService ds = new DetailService();
-	
+public class OrderHandler implements CommandHandler {
+	private static final String FORM_VIEW = "view/purchase/order/order.jsp";
+
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
-			System.out.println("cart 핸들러 get 지나침!");
+			System.out.println("디테일핸들러 두겟 지나침!");
 			return processForm(req, res);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
-			System.out.println("cart 핸들러  post 지나침!");
 			return processSubmit(req, res);
 		} else {
 			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
@@ -32,14 +26,6 @@ public class CartHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
-		setItem(req, res);
 		return FORM_VIEW;
 	}
-
-	private void setItem(HttpServletRequest req, HttpServletResponse res) {
-		
-	}
 }
-
-
-
