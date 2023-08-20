@@ -42,14 +42,17 @@ function updateTotalCost() {
     totalCostElement.textContent = total.toLocaleString() + "원";
 }
 updateTotalCost();
+
     function toggleCheckbox(checkbox) {
          calculateTotalCost();
-updateTotalCost();
+		updateTotalCost();
     }
 
     function deleteRow(button) {
             var row = button.parentNode.parentNode;
     row.parentNode.removeChild(row);
     updateTotalCost();
-
     }
+
+
+

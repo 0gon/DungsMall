@@ -60,4 +60,22 @@ public class MemberDao {
 			DBUtil.close(stmt);
 		}
 	}
+	
+	public String selectIdBySessionId(Connection conn, String id) throws SQLException {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.prepareStatement(
+					"select * from member where `sessionid` = ?");
+			stmt.setString(1, id);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				return rs.getString("id");
+			}
+			return "";
+		} finally {
+			DBUtil.close(rs);
+			DBUtil.close(stmt);
+		}
+	}
 }

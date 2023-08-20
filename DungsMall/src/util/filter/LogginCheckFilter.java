@@ -32,8 +32,9 @@ public class LogginCheckFilter implements Filter {
 			for (Cookie cookie : cookies) {
 				if (cookie.getName().equals("logging")) {
 					if (cookie.getValue().equals(sessionId)) {
-						System.out.println("로그인쿠키있음!");
+						System.out.println("로그인쿠키있음!" + sessionId);
 						req.setAttribute("login", true);
+						req.setAttribute("sessionId", sessionId);
 						chain.doFilter(req, resp);
 						return;
 					}
