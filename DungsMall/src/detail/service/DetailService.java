@@ -8,11 +8,13 @@ import basket.dao.BasketDao;
 import basket.model.Basket;
 import item.dao.ItemDao;
 import item.model.Item;
+import login.member.dao.MemberDao;
 import util.dbutil.DBUtil;
 
 public class DetailService {
 	ItemDao dao = new ItemDao();
 	BasketDao bDao = new BasketDao();
+	MemberDao mDao = new MemberDao();
 	
 	public Item initPage(String text) {
 		Connection conn = null;
@@ -36,6 +38,18 @@ public class DetailService {
 			} else {
 				return bDao.update(conn, basket);
 			}
+		} catch (SQLException e) {
+			throw new RuntimeException();
+		} finally {
+			DBUtil.close(conn);
+		}
+	}
+	
+	public String getId(String sessionId) {
+		Connection conn = null;
+		try {
+			conn = DBUtil.getConnection();
+			return mDao.selectIdBySessionId(conn, sessionId);
 		} catch (SQLException e) {
 			throw new RuntimeException();
 		} finally {

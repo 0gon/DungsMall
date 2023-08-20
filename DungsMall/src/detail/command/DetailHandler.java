@@ -35,13 +35,14 @@ public class DetailHandler implements CommandHandler {
 		setItem(req, res);
 		String name = req.getParameter("name");
 		String count = req.getParameter("count");
+		
 		if (count != null) {
 			if (req.getAttribute("login") == null) {
 				res.sendRedirect(req.getContextPath() + "/login.do");
 				return null;
 			} else if ((boolean) req.getAttribute("login")) { 
-						// id 가져오기
-				ds.plusBasket("dudrhs", name, Integer.valueOf(count));
+				String id = ds.getId((String) req.getAttribute("sessionId"));
+				ds.plusBasket(id, name, Integer.valueOf(count));
 				if (req.getParameter("submit").equals("buy")) {
 					res.sendRedirect(req.getContextPath() + "/cart.do");
 					return null;
