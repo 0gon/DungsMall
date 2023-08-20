@@ -86,7 +86,7 @@
 					<li>총 결제금액 <span id="totalcost" class="currency-wrapper">0<span>원</span></span></li>
 				</ul>
 				<div class="primary__btns">
-					<a href="#" class="primary-btn cart-btn">쇼핑 계속하기</a> <a
+					<a href="/DungsMall/main.do" class="primary-btn cart-btn">쇼핑 계속하기</a> <a
 						href="#" class="primary-btn checkout-btn">주문 하기</a>
 				</div>
 			</div>

@@ -23,7 +23,7 @@ public class CartHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("cart 핸들러 get 지나침!");
-			return processForm(req, res);
+			return processSubmit(req, res);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
 			System.out.println("cart 핸들러  post 지나침!");
 			
