@@ -41,7 +41,7 @@ public class DetailHandler implements CommandHandler {
 				return null;
 			} else if ((boolean) req.getAttribute("login")) { 
 						// id 가져오기
-				ds.insert("dudrhs", name, Integer.valueOf(count));
+				ds.plusBasket("dudrhs", name, Integer.valueOf(count));
 				if (req.getParameter("submit").equals("buy")) {
 					res.sendRedirect(req.getContextPath() + "/cart.do");
 					return null;

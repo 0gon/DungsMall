@@ -1,4 +1,4 @@
-    function allselecttrue() {
+function allselecttrue() {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach(checkbox => {
             checkbox.checked = true;
@@ -14,38 +14,42 @@
         calculateTotalCost();
     }
 
-function calculateTotalCost() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    let totalCost = 0;
+    function calculateTotalCost() {
+        var totalCost = 0;
+        var checkboxes = document.querySelectorAll('input[type="checkbox"][data-row]:checked');
+        
+        checkboxes.forEach(function(checkbox) {
+            var row = checkbox.closest('tr');
+            var price = parseInt(row.querySelector('.shoping__cart__price').textContent);
+            var count = parseInt(row.querySelector('.shoping__cart__quantity').textContent);
+            totalCost += price * count;
+        });
+        
+        document.getElementById('totalcost').textContent = totalCost + '원';
+    }
+function updateTotalCost() {
+    var total = 0;
+    var rows = document.querySelectorAll(".shoping__cart__table tbody tr");
 
-    checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            const row = checkbox.closest('tr');
-            const priceElement = row.querySelector('.shoping__cart__price');
-            const quantityElement = row.querySelector('.quantity');
-            const totalElement = row.querySelector('.shoping__cart__total');
-
-            const price = parseFloat(priceElement.textContent.replace('원', '').replace(',', ''));
-            const quantity = parseInt(quantityElement.textContent) || 0; // Default to 0 if NaN
-            const total = price * quantity;
-
-            totalCost += total;
-
-            totalElement.textContent = total.toLocaleString() + '원';
-        }
+    rows.forEach(function(row) {
+        var price = parseInt(row.querySelector(".shoping__cart__price").textContent);
+        var quantity = parseInt(row.querySelector(".shoping__cart__quantity").textContent);
+        var rowTotal = price * quantity;
+        total += rowTotal;
     });
 
-    // Update the total cost
-    const totalCostElement = document.getElementById('totalcost');
-    totalCostElement.textContent = totalCost.toLocaleString() + '원';
+    var totalCostElement = document.getElementById("totalcost");
+    totalCostElement.textContent = total.toLocaleString() + "원";
 }
-
+updateTotalCost();
     function toggleCheckbox(checkbox) {
-        calculateTotalCost();
+         calculateTotalCost();
+updateTotalCost();
     }
 
     function deleteRow(button) {
-        const row = button.closest('tr');
-        row.remove();
-        calculateTotalCost();
+            var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+    updateTotalCost();
+
     }
