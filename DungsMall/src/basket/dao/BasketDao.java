@@ -77,6 +77,7 @@ public class BasketDao {
 //			return 1;
 //		}
 //	}
+	
 	public int insert(Connection conn, Basket basket) throws SQLException {
 		PreparedStatement stmt = null;
 		try {
@@ -91,4 +92,39 @@ public class BasketDao {
 			DBUtil.close(stmt);
 		}
 	}
+	
+	public int getOne(Connection conn, Basket basket) throws SQLException {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.prepareStatement(
+					"SELECT COUNT(*) FROM `dungsmall`.`basket` "
+					+ "WHERE `member_id` = ? AND `item_name` = ?;");
+			stmt.setString(1, basket.getId());
+			stmt.setString(2, basket.getName());
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt("COUNT(*)");
+			}
+			return -1;
+		} finally {
+			DBUtil.close(stmt);
+		}
+	}
+	
+	public int update(Connection conn, Basket basket) throws SQLException {
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement(
+					"UPDATE `dungsmall`.`basket` SET `count` = count + ? "
+					+ "WHERE `member_id` = ? AND `item_name` = ?;");
+			stmt.setInt(1, basket.getCount());
+			stmt.setString(2, basket.getId());
+			stmt.setString(3, basket.getName());
+			return stmt.executeUpdate();
+		} finally {
+			DBUtil.close(stmt);
+		}
+	}
+	
 }

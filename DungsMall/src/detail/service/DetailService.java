@@ -26,11 +26,16 @@ public class DetailService {
 		}
 	}
 	
-	public int insert(String id, String name, int count) {
+	public int plusBasket(String id, String name, int count) {
 		Connection conn = null;
+		Basket basket = new Basket(id, name, count);
 		try {
 			conn = DBUtil.getConnection();
-			return bDao.insert(conn, new Basket(id, name, count));
+			if (bDao.getOne(conn, basket) == 0) {
+				return bDao.insert(conn, basket);
+			} else {
+				return bDao.update(conn, basket);
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException();
 		} finally {
