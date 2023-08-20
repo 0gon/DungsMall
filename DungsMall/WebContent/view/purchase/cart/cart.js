@@ -27,13 +27,29 @@ function allselecttrue() {
         
         document.getElementById('totalcost').textContent = totalCost + '원';
     }
+function updateTotalCost() {
+    var total = 0;
+    var rows = document.querySelectorAll(".shoping__cart__table tbody tr");
 
+    rows.forEach(function(row) {
+        var price = parseInt(row.querySelector(".shoping__cart__price").textContent);
+        var quantity = parseInt(row.querySelector(".shoping__cart__quantity").textContent);
+        var rowTotal = price * quantity;
+        total += rowTotal;
+    });
+
+    var totalCostElement = document.getElementById("totalcost");
+    totalCostElement.textContent = total.toLocaleString() + "원";
+}
+updateTotalCost();
     function toggleCheckbox(checkbox) {
          calculateTotalCost();
+updateTotalCost();
     }
 
     function deleteRow(button) {
-        const row = button.closest('tr');
-        row.remove();
-        calculateTotalCost();
+            var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+    updateTotalCost();
+
     }
