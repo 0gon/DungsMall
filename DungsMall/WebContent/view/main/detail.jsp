@@ -162,7 +162,7 @@
                           class="btn btn-warning btn-lg"
                           name="submit"
                           value="buy"
-                          formaction="/DungsMall/cart.do"
+                          formaction="/DungsMall/detail.do"
                         >
                           구매
                         </button>
@@ -173,7 +173,7 @@
                           class="btn btn-warning btn-lg"
                           name="submit"
                           value="addtocart"
-                          formaction="/DungsMall/cart.do"
+                          formaction="/DungsMall/detail.do"
                         >
                           장바구니
                         </button>
