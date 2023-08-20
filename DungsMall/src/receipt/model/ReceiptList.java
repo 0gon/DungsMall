@@ -1,14 +1,11 @@
 package receipt.model;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
 public class ReceiptList {
 	private int no;
 	private String memberid;
-	private LocalDate date;
+	private String date;
 
-	public ReceiptList(int no, String memberid, LocalDate date) {
+	public ReceiptList(int no, String memberid, String date) {
 		super();
 		this.no = no;
 		this.memberid = memberid;
@@ -31,11 +28,11 @@ public class ReceiptList {
 		this.memberid = memberid;
 	}
 
-	public LocalDate getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>영수증 목록</title>
+<title>영수증 상세 내역</title>
 <link rel="stylesheet" href="view/style/header.css" />
 <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -47,33 +47,39 @@
       <table class="table table-bordered table-hover text-center">
         <thead>
           <tr class="table-warning">
-            <th scope="col">주문번호</th>
+            <th scope="col">상품이름</th>
             <th scope="col">날짜</th>
-            <th scope="col">상품</th>
-            <th scope="col">가격</th>
+            <th scope="col">개수(수량)</th>
+            <th scope="col">총 가격</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
           <tr onClick="location.href='#'">
-            <th scope="row">1</th>
+            <th scope="row">고기</th>
             <td>2023-08-20</td>
-            <td>'고기' 외 몇개</td>
+            <td>3개</td>
             <td>25000원</td>
           </tr>
           <tr>
-            <th scope="row">2</th>
+            <th scope="row">고기</th>
             <td>2023-08-20</td>
-            <td>'감자' 외 몇개</td>
+            <td>3개</td>
             <td>25000원</td>
           </tr>
           <tr>
-            <th scope="row">3</th>
+            <th scope="row">고기</th>
             <td>2023-08-20</td>
-            <td>'당근' 외 몇개</td>
+            <td>3개</td>
             <td>25000원</td>
           </tr>
         </tbody>
       </table>
+      <div class="me-4" style="float: right; text-align: right;">
+        <h5>총 결제금액</h5>
+        <p>총
+        <span style="font-size: 1.2em;">100000원</span>
+        </p>
+      </div>
     </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
