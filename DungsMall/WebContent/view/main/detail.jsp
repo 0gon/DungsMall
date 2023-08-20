@@ -53,7 +53,7 @@
       </div>
     </header>
     <main>
-      <section class="bg-light">
+      <section>
         <div class="container pb-5">
           <div class="row">
             <div class="col-lg-5 mt-5">
@@ -147,17 +147,16 @@
                             개수
                           </li>
                           <li class="list-inline-item">
-                            <span class="btn btn-warning" id="btn-minus"
-                              >-</span
+                            <span class="btn btn-outline-warning rounded-circle" id="btn-minus">-</span
                             >
                           </li>
                           <li class="list-inline-item">
-                            <span class="badge bg-secondary" id="var-value"
+                            <span class="bg-light" id="var-value"
                               >1</span
                             >
                           </li>
                           <li class="list-inline-item">
-                            <span class="btn btn-warning" id="btn-plus">+</span>
+                            <span class="btn btn-outline-warning rounded-circle" id="btn-plus">+</span>
                           </li>
                         </ul>
                       </div>
