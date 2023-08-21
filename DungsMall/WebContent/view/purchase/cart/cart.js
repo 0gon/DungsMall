@@ -12,6 +12,7 @@ function allselecttrue() {
             checkbox.checked = false;
         });
         calculateTotalCost();
+
     }
 
     function calculateTotalCost() {
@@ -28,18 +29,13 @@ function allselecttrue() {
         document.getElementById('totalcost').textContent = totalCost + '원';
     }
 function updateTotalCost() {
-    var total = 0;
-    var rows = document.querySelectorAll(".shoping__cart__table tbody tr");
-
-    rows.forEach(function(row) {
-        var price = parseInt(row.querySelector(".shoping__cart__price").textContent);
-        var quantity = parseInt(row.querySelector(".shoping__cart__quantity").textContent);
-        var rowTotal = price * quantity;
-        total += rowTotal;
-    });
-
-    var totalCostElement = document.getElementById("totalcost");
-    totalCostElement.textContent = total.toLocaleString() + "원";
+   var totalCost = 0;
+    for (var i = 0; i < cartItems.length; i++) {
+        if (cartItems[i].checked) {
+            totalCost += cartItems[i].price * cartItems[i].count;
+        }
+    }
+    document.getElementById("totalcost").textContent = totalCost + "원";
 }
 updateTotalCost();
 
@@ -48,11 +44,60 @@ updateTotalCost();
 		updateTotalCost();
     }
 
-    function deleteRow(button) {
-            var row = button.parentNode.parentNode;
-    row.parentNode.removeChild(row);
-    updateTotalCost();
-    }
+function deleteRow(button, itemName) {
+    // AJAX 요청으로 아이템 이름을 서버로 보냄
+    fetch('/DungsMall/cart.do', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `itemName=${encodeURIComponent(itemName)}`,
+    })
+    .then(response => {
+        // 응답 처리
+        if (response.ok) {
+            // 행 삭제
+            const row = button.closest('tr');
+            row.remove();
+        } else {
+            console.error('Error deleting item');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
 
+function placeOrder() {
+    var selectedItems = [];
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 
+    checkboxes.forEach(function (checkbox) {
+        var row = checkbox.closest('tr');
+        var itemName = row.querySelector('.shoping__cart__item h5').textContent;
+        var itemPrice = parseFloat(row.querySelector('.shoping__cart__price').textContent);
+        var itemCount = parseInt(row.querySelector('.shoping__cart__quantity').textContent);
+
+        selectedItems.push({
+            name: itemName,
+            price: itemPrice,
+            count: itemCount
+        });
+    });
+
+    // AJAX 요청으로 서버에 데이터 전송
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/DungsMall/order.do', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // Handle successful response
+            } else {
+                // Handle error
+            }
+        }
+    };
+    xhr.send(JSON.stringify(selectedItems));
+}
 

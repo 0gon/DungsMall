@@ -66,17 +66,16 @@ public class BasketDao {
 //		return list;
 //	}
 //
-//	public int delete(Connection conn, String member, String item) throws SQLException {
-//		PreparedStatement stmt = null;
-//		try {
-//			stmt = conn.prepareStatement("DELETE FROM basket " + "WHERE member_id ='" + member
-//					+ "' and item_name ='" + item + "'");
-//			return stmt.executeUpdate(); 
-//		} finally {
-//			DBUtil.close(stmt);
-//			return 1;
-//		}
-//	}
+	public int delete(Connection conn, String member, String item) throws SQLException {
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement("DELETE FROM basket " + "WHERE member_id ='" + member
+					+ "' and item_name ='" + item + "'");
+			return stmt.executeUpdate(); 
+		} finally {
+			DBUtil.close(stmt);
+		}
+	}
 	
 	public int insert(Connection conn, Basket basket) throws SQLException {
 		PreparedStatement stmt = null;

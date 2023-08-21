@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import basket.dao.BasketDao;
 import basket.model.BasketSub;
@@ -38,16 +39,21 @@ public class CartHandler implements CommandHandler {
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws UnsupportedEncodingException {
 		
 		setItem(req, res);
 		return FORM_VIEW;
 	}
 
-	private void setItem(HttpServletRequest req, HttpServletResponse res) {
-		String name = "dudrhs";
-		 list = cartService.itemCall(name);
+	private void setItem(HttpServletRequest req, HttpServletResponse res) throws UnsupportedEncodingException {
+		 DetailService ds = new DetailService();
+		 String sessionId = (String)req.getAttribute("sessionId");
+		 list = cartService.itemCall(ds.getId(sessionId));
 		 req.setAttribute("basketList", list);
+		 
+		 req.setCharacterEncoding("UTF-8");
+		 String itemName = req.getParameter("itemName");
+		 cartService.deleteBasket(ds.getId(sessionId), itemName);
 	}
 }
 
