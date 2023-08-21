@@ -89,71 +89,81 @@
 	</header>
 
 	<!-- Shoping Cart Section Begin -->
-	<section class="shoping-cart spad">
+	<form id="orderForm" action="order.do" method="post">
+		<section class="shoping-cart spad">
 
-		<div class="container">
-			<h2>장바구니</h2>
-			<hr>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="shoping__cart__table">
-						<table>
-							<thead>
-								<tr>
-									<th></th>
-									<th class="shoping__product">제품 상세</th>
-									<th>가 격</th>
-									<th>개수(수량)</th>
-									<th>총 가격</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${basketList}" var="item">
+			<div class="container">
+				<h2>장바구니</h2>
+				<hr>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="shoping__cart__table">
+							<table>
+								<thead>
 									<tr>
-										<td><input type="checkbox" value="false" data-row="1"
-											onchange="toggleCheckbox(this)"></td>
-										<td class="shoping__cart__item">
-											<h5>${item.name}</h5>
-										</td>
-										<td class="shoping__cart__price">${item.price}원</td>
-										<td class="shoping__cart__quantity">${item.count}</td>
-										<td class="shoping__cart__total">${item.price * item.count}원</td>
-										<td>
-											 <button class="shoping__cart__quantity__delete"
-        										onclick="deleteRow(this, '${item.name}')">x</button>
-										</td>
+										<th></th>
+										<th class="shoping__product">제품 상세</th>
+										<th>가 격</th>
+										<th>개수(수량)</th>
+										<th>총 가격</th>
+										<th></th>
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									<c:forEach items="${basketList}" var="item">
+										<tr>
+											<td><input type="checkbox" value="false" data-row="1"
+												onchange="toggleCheckbox(this)"></td>
+											<td class="shoping__cart__item">
+												<h5>${item.name}</h5>
+											</td>
+											<td class="shoping__cart__price">${item.price}원</td>
+											<td class="shoping__cart__quantity">${item.count}</td>
+											<td class="shoping__cart__total">${item.price * item.count}원</td>
+											<td>
+												<button class="shoping__cart__quantity__delete"
+													onclick="deleteRow(this, '${item.name}')">x</button>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<div class="shoping__cart__btns__selects">
+					<div class="shoping__cart__btns__select__left">
+						<button class="shoping__cart__btns__allselect" type="button"
+							id="selectAll">전체 선택</button>
+						<button class="shoping__cart__btns__allselect" type="button"
+							id="deselectAll">전체 취소</button>
+
+					</div>
+				</div>
+
+				<div class="shoping__checkout">
+					<h5>총 결제금액</h5>
+					<ul>
+						<li>금액에 변동이 없을 시 체크박스를 확인해주세요</li>
+						<li>총 결제금액 <span id="totalcost" class="currency-wrapper">0<span>원</span></span></li>
+					</ul>
+					<div class="primary__btns">
+						<a href="/DungsMall/main.do" class="primary-btn cart-btn">쇼핑
+							계속하기</a>
+
+						<!-- 여기에 테이블과 체크박스 등의 HTML 구조를 작성합니다. -->
+						<!-- ... -->
+						<!-- 아래에 hidden input 필드를 추가하여 JSON 데이터를 전달할 준비를 합니다. -->
+						<input type="hidden" id="postDataInput" name="postData">
+						<!-- 주문하기 버튼을 클릭하면 JavaScript 함수를 실행하여 데이터를 전달합니다. -->
+						<button type="button" class="primary-btn checkout-btn"
+							onclick="placeOrder(event)">주문 하기</button>
 					</div>
 				</div>
 			</div>
-
-			<div class="shoping__cart__btns__selects">
-				<div class="shoping__cart__btns__select__left">
-					<button class="shoping__cart__btns__allselect"
-						onclick="allselecttrue()">전체 선택</button>
-					<button class="shoping__cart__btns__allselect"
-						onclick="allselectfalse()">전체 취소</button>
-				</div>
-			</div>
-
-			<div class="shoping__checkout">
-				<h5>총 결제금액</h5>
-				<ul>
-					<li>금액에 변동이 없을 시 체크박스를 확인해주세요</li>
-					<li>총 결제금액 <span id="totalcost" class="currency-wrapper">0<span>원</span></span></li>
-				</ul>
-				<div class="primary__btns">
-					<a href="/DungsMall/main.do" class="primary-btn cart-btn">쇼핑
-						계속하기</a> 
-						<a href="http://localhost:8080/DungsMall/order.do" class="primary-btn checkout-btn" onclick="placeOrder()">주문 하기</a>
-				</div>
-			</div>
-		</div>
-	</section>
+		</section>
+	</form>
 </body>
 
 </html>

@@ -1,19 +1,32 @@
 function allselecttrue() {
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(checkbox => {
-            checkbox.checked = true;
-        });
-        calculateTotalCost();
-    }
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = true;
+    });
+    calculateTotalCost();
+}
 
-    function allselectfalse() {
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(checkbox => {
-            checkbox.checked = false;
-        });
-        calculateTotalCost();
+function allselectfalse() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    calculateTotalCost();
+    updateTotalCost();
+}
 
-    }
+window.addEventListener('load', function() {
+    document.getElementById('selectAll').addEventListener('click', function(event) {
+        event.preventDefault(); // 페이지 이동 막기
+        allselecttrue(); // 기존 함수 호출
+    });
+
+    document.getElementById('deselectAll').addEventListener('click', function(event) {
+        event.preventDefault(); // 페이지 이동 막기
+        allselectfalse(); // 기존 함수 호출
+    });
+});
+
 
     function calculateTotalCost() {
         var totalCost = 0;
@@ -85,7 +98,9 @@ function deleteRow(button, itemName) {
 	
 }
 
-function placeOrder() {
+function placeOrder(event) {
+    event.preventDefault(); // 폼 제출 기본 동작 막기
+
     var selectedItems = [];
     var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 
@@ -101,35 +116,10 @@ function placeOrder() {
             count: itemCount
         });
     });
+    
+    var postData = JSON.stringify(selectedItems);
+    document.getElementById('postDataInput').value = postData;
 
-    // AJAX 요청으로 서버에 데이터 전송
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/DungsMall/order.do', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                // Handle successful response
-            } else {
-                // Handle error
-            }
-        }
-    };
-    xhr.send(JSON.stringify(selectedItems));
+    // 폼을 수동으로 제출합니다.
+    document.getElementById('orderForm').submit();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

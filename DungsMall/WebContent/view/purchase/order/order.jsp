@@ -133,7 +133,8 @@
 					<li>총 결제금액 <span id="totalcost" class="currency-wrapper">0<span>원</span></span></li>
 				</ul>
 				<div class="primary__btns">
-					<a href="#" class="primary-btn checkout-btn">결제 하기</a>
+				
+					<a href="view/purchase/order/payment.jsp" class="primary-btn checkout-btn">결제 하기</a>
 				</div>
 			</div>
 		</div>

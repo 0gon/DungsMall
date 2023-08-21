@@ -1,10 +1,39 @@
 package payment.command;
 
+import java.io.UnsupportedEncodingException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import order.service.OrderService;
 
 public class PaymentHandler {
-	private static final String FORM_VIEW = "view/purchase/order/order.jsp";
+	private static final String FORM_VIEW = "view/purchase/order/payment.jsp";
 	private OrderService os = new OrderService();
+	
+	@Override
+	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			System.out.println("cart 핸들러 get 지나침!");
+			return processSubmit(req, res);
+		} else if (req.getMethod().equalsIgnoreCase("POST")) {
+			System.out.println("cart 핸들러  post 지나침!");
+			
+			return processSubmit(req, res);
+		} else {
+			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+			return null;
+		}
+	}
+	private String processForm(HttpServletRequest req, HttpServletResponse res) {
+		return FORM_VIEW;
+	}
+
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws UnsupportedEncodingException {
+		
+		return FORM_VIEW;
+	}
+	
 }
 
 
