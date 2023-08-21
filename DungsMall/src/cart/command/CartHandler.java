@@ -16,7 +16,7 @@ import item.model.Item;
 import mvc.command.CommandHandler;
 
 public class CartHandler implements CommandHandler {
-	private static final String FORM_VIEW = "view/purchase/cart/cart.jsp";
+	private static final String FORM_VIEW = "/view/purchase/cart/cart.jsp";
 	CartService cartService = new CartService();
 	List<BasketSub> list = new ArrayList<>();
 	
