@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import item.model.Item;
 import login.member.dao.MemberDao;
 import mvc.command.CommandHandler;
 import receipt.dao.ReceiptDao;
+import receipt.model.ReceiptDetail;
 import receipt.model.ReceiptList;
 import util.dbutil.DBUtil;
 
@@ -35,7 +37,7 @@ public class ReceiptHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		//setItem(req, res);
+		setItem(req, res);
 		return FORM_VIEW;
 	}
 	
@@ -44,16 +46,34 @@ public class ReceiptHandler implements CommandHandler {
 	}
 	
 	private void setItem(HttpServletRequest req, HttpServletResponse res) {
-		List<ReceiptList> list = null;
-		List<String> foods = null;
+		List<ReceiptList> list = new ArrayList<>();
+		List<ReceiptDetail> foods = null;
 		try (Connection conn = DBUtil.getConnection()) {
 			String id = mDao.selectIdBySessionId(conn, (String)req.getAttribute("sessionId"));
-			list = dao.getAll(conn, id);
-			foods = dao.getFirst(conn, id);
+			list = dao.getList(conn, id);
+			for(int i = 0; i < list.size(); i++) {
+				foods = new ArrayList<>();
+				ReceiptList receipt = list.get(i);
+				foods = dao.getDetail(conn, receipt.getNo());
+				receipt.setDetail(foods);
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException();
 		}
+		List<Integer> totals = getTotal(list);
+		req.setAttribute("total", totals);
 		req.setAttribute("list", list);
-		req.setAttribute("foods", foods);
+	}
+	
+	private List<Integer> getTotal(List<ReceiptList> receipt) {
+		List<Integer> totals = new ArrayList<>();
+		for (ReceiptList list : receipt) {
+			int total = 0;
+			for (ReceiptDetail detail : list.getDetail()) {
+				total += detail.getPrice();
+			}
+			totals.add(total);
+		}
+		return totals;
 	}
 }
