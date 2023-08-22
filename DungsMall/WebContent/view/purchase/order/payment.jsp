@@ -6,7 +6,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>결제 완료</title>
-    <link rel="stylesheet" href="payment.css" type="text/css" />
+    <link rel="stylesheet" href="view/purchase/order/payment.css" type="text/css" />
   </head>
   <body>
     <h1>결제가 완료되었습니다!</h1>

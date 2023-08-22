@@ -12,7 +12,6 @@ function allselectfalse() {
         checkbox.checked = false;
     });
     calculateTotalCost();
-    updateTotalCost();
 }
 
 window.addEventListener('load', function() {
@@ -27,8 +26,19 @@ window.addEventListener('load', function() {
     });
 });
 
+function toggleCheckbox(checkbox) {
+    checkbox.checked = !checkbox.checked; // Toggle the checked state
+    calculateTotalCost(); // Update total cost when checkbox state changes
+}
 
-    function calculateTotalCost() {
+document.addEventListener('change', function(event) {
+    if (event.target && event.target.matches('input[type="checkbox"][data-row]')) {
+        toggleCheckbox(event.target);
+    }
+});
+
+
+function calculateTotalCost() {
         var totalCost = 0;
         var checkboxes = document.querySelectorAll('input[type="checkbox"][data-row]:checked');
         
@@ -39,23 +49,11 @@ window.addEventListener('load', function() {
             totalCost += price * count;
         });
         
+var totalCostElement = document.getElementById('totalcost');
+    totalCostElement.textContent = totalCost + '원';
         document.getElementById('totalcost').textContent = totalCost + '원';
     }
-function updateTotalCost() {
-   var totalCost = 0;
-    for (var i = 0; i < cartItems.length; i++) {
-        if (cartItems[i].checked) {
-            totalCost += cartItems[i].price * cartItems[i].count;
-        }
-    }
-    document.getElementById("totalcost").textContent = totalCost + "원";
-}
-updateTotalCost();
 
-    function toggleCheckbox(checkbox) {
-         calculateTotalCost();
-		updateTotalCost();
-    }
 
 function deleteRow(button, itemName) {
     // AJAX 요청으로 아이템 이름을 서버로 보냄
