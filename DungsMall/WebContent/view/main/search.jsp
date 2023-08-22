@@ -48,9 +48,11 @@ pageEncoding="UTF-8" %>
       </div>
     </header>
     <section class="py-5">
-        <div class="container px-4 px-lg-5 mt-5">
+    <div class="container px-4 px-lg-5 mt-5">
+	    <c:if test="${empty list}">
+	    	<h1>이름과 맞는 재료가 없습니다.</h1>
+	    </c:if>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                
                 <c:forEach var="item" items="${list}">
                 <div class="col mb-5">
                     <div class="card h-100">

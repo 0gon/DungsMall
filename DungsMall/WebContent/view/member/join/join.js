@@ -21,7 +21,6 @@ inputs.forEach(e => {
 });
 
 
-
 async function check(e) {
 	let names = e.target.name;
 	if (names == "id") {
@@ -132,7 +131,7 @@ function checkConfirm(e) {
 	} else {
 		errorconfirmPassword.innerText = "";
 	}
-};
+}
 
 function checkEmail() {
 	let emailValue = email.value;
