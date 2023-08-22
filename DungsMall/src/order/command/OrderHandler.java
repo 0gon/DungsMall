@@ -30,7 +30,6 @@ public class OrderHandler implements CommandHandler {
 	private static final String FORM_VIEW = "view/purchase/order/order.jsp";
 	private OrderService os = new OrderService();
 	private List<BasketList> list = new ArrayList<>();
-	private List<String> nameList = new ArrayList<>();
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -68,7 +67,6 @@ public class OrderHandler implements CommandHandler {
 		if(basketItems != null) {
 		for (BasketList item : basketItems) {
 			list.add(new BasketList(item.getName(), item.getPrice(), item.getCount()));
-			nameList.add(item.getName());
 		}
 		
 		System.out.println("추가가 끝난 리스트" + list);
@@ -79,5 +77,4 @@ public class OrderHandler implements CommandHandler {
 		}
 		return FORM_VIEW;
 	}
-	
 }

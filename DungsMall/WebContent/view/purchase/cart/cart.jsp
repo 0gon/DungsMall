@@ -144,7 +144,7 @@
 
 				<div class="shoping__checkout">
 					<h5>총 결제금액</h5>
-					<ul>
+					<ul>	
 						<li>금액에 변동이 없을 시 체크박스를 확인해주세요</li>
 						<li>총 결제금액 <span id="totalcost" class="currency-wrapper">0<span>원</span></span></li>
 					</ul>

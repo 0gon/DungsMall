@@ -89,6 +89,7 @@
 		</div>
 	</header>
 
+<form id="paymentForm" action="payment.do" method="post">
 	<!-- Shoping Cart Section Begin -->
 	<section class="shoping-cart spad">
 		<div class="container">
@@ -133,11 +134,14 @@
 					<li>총 결제금액 <span id="totalcost" class="currency-wrapper">0<span>원</span></span></li>
 				</ul>
 				<div class="primary__btns">
-				
-					<a href="view/purchase/order/payment.jsp" class="primary-btn checkout-btn">결제 하기</a>
+				<input type="hidden" id="postDataInput" name="postData">
+						<!-- 주문하기 버튼을 클릭하면 JavaScript 함수를 실행하여 데이터를 전달합니다. -->
+	<button type="button" class="primary-btn checkout-btn" onclick="placeOrder(event)">주문 하기</button>
+
 				</div>
 			</div>
 		</div>
 	</section>
+	</form>
 </body>
 </html>
