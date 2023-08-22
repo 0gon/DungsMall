@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import item.dao.ItemDao;
 import item.model.Item;
 import login.member.dao.MemberDao;
 import mvc.command.CommandHandler;
@@ -22,6 +23,7 @@ public class ReceiptHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/view/purchase/receipt/receiptList.jsp";
 	ReceiptDao dao = new ReceiptDao();
 	MemberDao mDao = new MemberDao();
+	ItemDao iDao = new ItemDao();
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -55,13 +57,13 @@ public class ReceiptHandler implements CommandHandler {
 				foods = new ArrayList<>();
 				ReceiptList receipt = list.get(i);
 				foods = dao.getDetail(conn, receipt.getNo());
+				setItemDetails(conn, foods);
 				receipt.setDetail(foods);
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException();
 		}
-		List<Integer> totals = getTotal(list);
-		req.setAttribute("total", totals);
+		req.setAttribute("total", getTotal(list));
 		req.setAttribute("list", list);
 	}
 	
@@ -75,5 +77,12 @@ public class ReceiptHandler implements CommandHandler {
 			totals.add(total);
 		}
 		return totals;
+	}
+	
+	private void setItemDetails(Connection conn, List<ReceiptDetail> details) throws SQLException {
+		for (int i = 0; i < details.size(); i++) {
+			ReceiptDetail detail = details.get(i);
+			detail.setItemDetail(iDao.getByName(conn, detail.getItem()));
+		}
 	}
 }

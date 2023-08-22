@@ -51,17 +51,8 @@
 	        </div>
 	      </div>
     	</header>
-    <nav>
-      <form class="d-flex m-5" role="search">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </nav>
+    <div class="m-5">
+    </div>
     <c:forEach var="item" items="${list}" varStatus="status">
     <div class="card mx-5 my-3">
       <div class="card-header">${item.date} 주문</div>
@@ -72,21 +63,20 @@
           <div class="row g-0">
             <div class="col-md-4">
               <img
-                src="images/m.png"
+                src="/${food.itemDetail.img}"
                 style="height: 90px"
                 class="img-fluid rounded-start"
               />
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-text">신선하고 맛있는 ${food.item}</h5>
-                <p class="card-text"> ${food.price}</p>
+                <h5 class="card-text">${food.itemDetail.descript} ${food.itemDetail.origin} ${food.item}</h5>
+                <p class="card-text">${food.count} ${food.itemDetail.unit} |  ${food.price}원 </p>
               </div>
             </div>
           </div>
         </div>
         </c:forEach>
-        <a href="#" class="btn btn-warning">후기 남기는 버튼 생성 예정</a>
       </div>
       </div>
     </c:forEach>
