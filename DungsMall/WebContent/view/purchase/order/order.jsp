@@ -136,7 +136,7 @@
 				<div class="primary__btns">
 				<input type="hidden" id="postDataInput" name="postData">
 						<!-- 주문하기 버튼을 클릭하면 JavaScript 함수를 실행하여 데이터를 전달합니다. -->
-	<button type="button" class="primary-btn checkout-btn" onclick="placeOrder(event)">주문 하기</button>
+	<button type="button" class="primary-btn checkout-btn" onclick="placeOrder(event)">구매 하기</button>
 
 				</div>
 			</div>

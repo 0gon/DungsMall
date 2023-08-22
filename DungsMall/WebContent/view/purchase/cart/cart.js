@@ -102,6 +102,11 @@ function placeOrder(event) {
     var selectedItems = [];
     var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 
+    if (checkboxes.length === 0) {
+        alert("주문할 상품을 선택해주세요.");
+        return; // 상품 선택이 없을 때 함수 중단
+    }
+
     checkboxes.forEach(function (checkbox) {
         var row = checkbox.closest('tr');
         var itemName = row.querySelector('.shoping__cart__item h5').textContent;
