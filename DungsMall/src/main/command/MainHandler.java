@@ -43,6 +43,7 @@ public class MainHandler implements CommandHandler {
 		try (Connection conn = DBUtil.getConnection()) {
 			itemList = dao.getAll(conn);
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new RuntimeException();
 		}
 		req.setAttribute("itemList", itemList);

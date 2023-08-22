@@ -13,8 +13,8 @@ public class Test{
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			Member member = new Member("dudrhs", "dudrhs", "영곤", "dudrhs@naver.com");
-			dao.insert(conn, member);
+			Member member = dao.selectById(conn, "dudrhs");
+			System.out.println(member);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

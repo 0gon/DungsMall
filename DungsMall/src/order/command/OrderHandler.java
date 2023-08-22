@@ -29,7 +29,6 @@ import order.service.OrderService;
 public class OrderHandler implements CommandHandler {
 	private static final String FORM_VIEW = "view/purchase/order/order.jsp";
 	private OrderService os = new OrderService();
-	private List<BasketList> list = new ArrayList<>();
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -57,6 +56,7 @@ public class OrderHandler implements CommandHandler {
 		DetailService ds = new DetailService();
 		String sessionId = (String) req.getAttribute("sessionId");
 		String line;
+		List<BasketList> list = new ArrayList<>();
 
 
 		// JSON 데이터를 Gson을 이용하여 객체로 변환
