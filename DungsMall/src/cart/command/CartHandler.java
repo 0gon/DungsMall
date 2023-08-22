@@ -18,7 +18,7 @@ import mvc.command.CommandHandler;
 public class CartHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/view/purchase/cart/cart.jsp";
 	CartService cartService = new CartService();
-	List<BasketSub> list = new ArrayList<>();
+	
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -48,6 +48,7 @@ public class CartHandler implements CommandHandler {
 	private void setItem(HttpServletRequest req, HttpServletResponse res) throws UnsupportedEncodingException {
 		 DetailService ds = new DetailService();
 		 String sessionId = (String)req.getAttribute("sessionId");
+		 List<BasketSub> list = new ArrayList<>();
 		 list = cartService.itemCall(ds.getId(sessionId));
 		 req.setAttribute("basketList", list);
 		 

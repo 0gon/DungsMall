@@ -18,7 +18,7 @@ import order.service.OrderService;
 public class PaymentHandler implements CommandHandler {
 	private static final String FORM_VIEW = "view/purchase/order/payment.jsp";
 	private OrderService os = new OrderService();
-	private List<BasketList> list = new ArrayList<>();
+	
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -46,7 +46,7 @@ public class PaymentHandler implements CommandHandler {
 		DetailService ds = new DetailService();
 		String sessionId = (String) req.getAttribute("sessionId");
 		String line;
-
+		List<BasketList> list = new ArrayList<>();
 		// JSON 데이터를 Gson을 이용하여 객체로 변환
 		Gson gson = new Gson();
 		BasketList[] basketItems = gson.fromJson(req.getParameter("postData"), BasketList[].class);
@@ -62,9 +62,9 @@ public class PaymentHandler implements CommandHandler {
 			os.insertReceipt(ds.getId(sessionId), date);
 
 			for (BasketList item : basketItems) {
-				// System.out.println("영수증 디테일 추가");
+				 System.out.println("영수증 디테일 추가");
 				os.insertReceiptDetail(item.getName(), item.getCount(), item.getPrice());
-				// System.out.println("장바구니에서 구매한 항목 삭제");
+				 System.out.println("장바구니에서 구매한 항목 삭제");
 				os.deleteBasket(ds.getId(sessionId), item.getName());
 			}
 		}
