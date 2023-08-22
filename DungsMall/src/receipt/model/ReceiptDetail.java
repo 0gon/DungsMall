@@ -1,10 +1,16 @@
 package receipt.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import item.model.Item;
+
 public class ReceiptDetail {
 	private int no;
 	private String item;
 	private int count;
 	private int price;
+	private Item itemDetail;
 
 	public ReceiptDetail(int no, String item, int count, int price) {
 		super();
@@ -12,6 +18,15 @@ public class ReceiptDetail {
 		this.item = item;
 		this.count = count;
 		this.price = price;
+		this.itemDetail = null;
+	}
+	
+	public Item getItemDetail() {
+		return itemDetail;
+	}
+
+	public void setItemDetail(Item itemDetail) {
+		this.itemDetail = itemDetail;
 	}
 
 	public int getNo() {
