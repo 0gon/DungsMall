@@ -31,6 +31,7 @@
 1. chatbot과 대화해보세요.
 2. 추천받은 음식의 레시피를 물어보세요.
 3. 레시피를 통한 재료를 쇼핑해보세요.
+<img src="https://github.com/0gon/DungsMall/assets/130747714/42f364ce-086c-40c7-baf5-3593e8ee4d20">
 
 ## 3장 개발 환경
 <div align=center> 
