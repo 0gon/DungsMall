@@ -1,9 +1,11 @@
 package basket.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
@@ -43,34 +45,60 @@ public class BasketDao {
 	}
 
 	
-	// 추후 예정
-//	public List<Basket> update(Connection conn) throws SQLException {
-//		PreparedStatement stmt = null;
-//		ResultSet rs = null;
-//		List<Basket> list = new ArrayList<>();
-//		try {
-//
-//			stmt = conn.prepareStatement("UPDATE BASKET SET FROM basket ");
-//			rs = stmt.executeQuery();
-//			while (rs.next()) {
-//				String id = rs.getString("member_id");
-//				String item = rs.getString("item_item");
-//				int count = rs.getInt("count");
-//				list.add(new Basket(id, item, count));
-//				System.out.println(list);
-//			}
-//		} finally {
-//			DBUtil.close(rs);
-//			DBUtil.close(stmt);
-//		}
-//		return list;
-//	}
-//
+	// 장바구니에서 주문한 녀석들 인설트
+	public int insert(Connection conn, String member, LocalDate date) throws SQLException {
+		PreparedStatement stmt = null;
+		try {
+
+			stmt = conn.prepareStatement("INSERT INTO receiptlist (member_ID, date) VALUES\r\n" + 
+					"('"+ member +"',"+"'"+ date +"');");
+			return stmt.executeUpdate();
+
+		} finally {
+			DBUtil.close(stmt);
+		}
+	}
+	
+	// 위에서 넣은 영수증 번호 확인
+	public int selectNo(Connection conn) throws SQLException {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.prepareStatement("SELECT * FROM receiptlist ORDER BY no DESC LIMIT 1;");
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+			int no = rs.getInt("no");
+			return no;
+			}
+
+		} finally {
+			DBUtil.close(stmt);
+		}
+		return 0;
+	}
+	
+	// receiptdetail 인설트
+	public int insertDetail(Connection conn, int no, String itemName, int count, int price ) throws SQLException {
+		PreparedStatement stmt = null;
+		try {
+
+			stmt = conn.prepareStatement("INSERT INTO receipt_detail values("+no+",'"+itemName+"',"+count+","+price+");" );
+			return stmt.executeUpdate();
+
+		} finally {
+			DBUtil.close(stmt);
+		}
+	}	
+	
+	
+	// 장바구니 항목 지우기
 	public int delete(Connection conn, String member, String item) throws SQLException {
 		PreparedStatement stmt = null;
 		try {
 			stmt = conn.prepareStatement("DELETE FROM basket " + "WHERE member_id ='" + member
 					+ "' and item_name ='" + item + "'");
+			
+			
 			return stmt.executeUpdate(); 
 		} finally {
 			DBUtil.close(stmt);

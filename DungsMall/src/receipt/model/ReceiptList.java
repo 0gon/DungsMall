@@ -1,17 +1,30 @@
 package receipt.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ReceiptList {
 	private int no;
 	private String memberid;
 	private String date;
+	private List<ReceiptDetail> detail;
 
 	public ReceiptList(int no, String memberid, String date) {
 		super();
 		this.no = no;
 		this.memberid = memberid;
 		this.date = date;
+		this.detail = new ArrayList<>();
 	}
-	
+
+	public List<ReceiptDetail> getDetail() {
+		return detail;
+	}
+
+	public void setDetail(List<ReceiptDetail> list) {
+		this.detail = list;
+	}
+
 	public int getNo() {
 		return no;
 	}
@@ -38,7 +51,7 @@ public class ReceiptList {
 
 	@Override
 	public String toString() {
-		return "ReceiptList [no=" + no + ", memberid=" + memberid + ", date=" + date + "]";
+		return "ReceiptList [no=" + no + ", memberid=" + memberid + ", date=" + date + "]" + detail; 
 	}
 
 

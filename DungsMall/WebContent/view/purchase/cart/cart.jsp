@@ -149,7 +149,7 @@
 				<div class="primary__btns">
 					<a href="#" class="primary-btn cart-btn">쇼핑
 						계속하기</a> 
-						<a class="primary-btn checkout-btn" onclick="placeOrder()">주문 하기</a>
+						<a href="http://localhost:8080/DungsMall/order.do" class="primary-btn checkout-btn" onclick="placeOrder()">주문 하기</a>
 				</div>
 			</div>
 		</div>

@@ -66,6 +66,23 @@ function deleteRow(button, itemName) {
     .catch(error => {
         console.error('Error:', error);
     });
+	   // Find the parent row and remove it from the table
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+
+    // Update the total cost by subtracting the deleted item's cost from the current total
+    var itemPrice = parseInt(row.querySelector(".shoping__cart__price").textContent);
+    var itemCount = parseInt(row.querySelector(".shoping__cart__quantity").textContent);
+    var itemTotal = itemPrice * itemCount;
+
+    var totalCostElement = document.getElementById("totalcost");
+    var currentTotal = parseInt(totalCostElement.textContent);
+    
+    // Ensure the total cost doesn't go below 0
+    var newTotal = Math.max(currentTotal - itemTotal, 0);
+    
+    totalCostElement.textContent = newTotal + "원";
+	
 }
 
 function placeOrder() {
@@ -100,4 +117,19 @@ function placeOrder() {
     };
     xhr.send(JSON.stringify(selectedItems));
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
