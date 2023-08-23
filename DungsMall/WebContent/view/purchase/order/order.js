@@ -49,4 +49,5 @@ function placeOrder(event) {
 
     // 폼을 제출합니다.
     document.getElementById('paymentForm').submit();
+
 }

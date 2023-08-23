@@ -12,7 +12,6 @@ function allselectfalse() {
         checkbox.checked = false;
     });
     calculateTotalCost();
-    updateTotalCost();
 }
 
 window.addEventListener('load', function() {
@@ -27,8 +26,19 @@ window.addEventListener('load', function() {
     });
 });
 
+function toggleCheckbox(checkbox) {
+    checkbox.checked = !checkbox.checked; // Toggle the checked state
+    calculateTotalCost(); // Update total cost when checkbox state changes
+}
 
-    function calculateTotalCost() {
+document.addEventListener('change', function(event) {
+    if (event.target && event.target.matches('input[type="checkbox"][data-row]')) {
+        toggleCheckbox(event.target);
+    }
+});
+
+
+function calculateTotalCost() {
         var totalCost = 0;
         var checkboxes = document.querySelectorAll('input[type="checkbox"][data-row]:checked');
         
@@ -39,26 +49,15 @@ window.addEventListener('load', function() {
             totalCost += price * count;
         });
         
+var totalCostElement = document.getElementById('totalcost');
+    totalCostElement.textContent = totalCost + '원';
         document.getElementById('totalcost').textContent = totalCost + '원';
     }
-function updateTotalCost() {
-   var totalCost = 0;
-    for (var i = 0; i < cartItems.length; i++) {
-        if (cartItems[i].checked) {
-            totalCost += cartItems[i].price * cartItems[i].count;
-        }
-    }
-    document.getElementById("totalcost").textContent = totalCost + "원";
-}
-updateTotalCost();
 
-    function toggleCheckbox(checkbox) {
-         calculateTotalCost();
-		updateTotalCost();
-    }
 
-function deleteRow(button, itemName) {
-    // AJAX 요청으로 아이템 이름을 서버로 보냄
+function deleteRow(event, button, itemName) {
+    event.preventDefault();
+
     fetch('/DungsMall/cart.do', {
         method: 'POST',
         headers: {
@@ -67,10 +66,18 @@ function deleteRow(button, itemName) {
         body: `itemName=${encodeURIComponent(itemName)}`,
     })
     .then(response => {
-        // 응답 처리
         if (response.ok) {
-            // 행 삭제
+            // 삭제가 성공하면 행을 삭제하고 total cost 업데이트
             const row = button.closest('tr');
+            var itemPrice = parseInt(row.querySelector(".shoping__cart__price").textContent);
+            var itemCount = parseInt(row.querySelector(".shoping__cart__quantity").textContent);
+            var itemTotal = itemPrice * itemCount;
+
+            var totalCostElement = document.getElementById("totalcost");
+            var currentTotal = parseInt(totalCostElement.textContent);
+            var newTotal = Math.max(currentTotal - itemTotal, 0);
+            totalCostElement.textContent = newTotal + "원";
+
             row.remove();
         } else {
             console.error('Error deleting item');
@@ -79,23 +86,6 @@ function deleteRow(button, itemName) {
     .catch(error => {
         console.error('Error:', error);
     });
-	   // Find the parent row and remove it from the table
-    var row = button.parentNode.parentNode;
-    row.parentNode.removeChild(row);
-
-    // Update the total cost by subtracting the deleted item's cost from the current total
-    var itemPrice = parseInt(row.querySelector(".shoping__cart__price").textContent);
-    var itemCount = parseInt(row.querySelector(".shoping__cart__quantity").textContent);
-    var itemTotal = itemPrice * itemCount;
-
-    var totalCostElement = document.getElementById("totalcost");
-    var currentTotal = parseInt(totalCostElement.textContent);
-    
-    // Ensure the total cost doesn't go below 0
-    var newTotal = Math.max(currentTotal - itemTotal, 0);
-    
-    totalCostElement.textContent = newTotal + "원";
-	
 }
 
 function placeOrder(event) {
@@ -103,6 +93,11 @@ function placeOrder(event) {
 
     var selectedItems = [];
     var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+    if (checkboxes.length === 0) {
+        alert("주문할 상품을 선택해주세요.");
+        return; // 상품 선택이 없을 때 함수 중단
+    }
 
     checkboxes.forEach(function (checkbox) {
         var row = checkbox.closest('tr');

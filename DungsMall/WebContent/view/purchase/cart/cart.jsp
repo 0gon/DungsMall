@@ -8,8 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>장바구니</title>
-<link rel="stylesheet" href="view/purchase/cart/bootstrap.min.css"
-	type="text/css">
 <link rel="stylesheet" href="view/purchase/cart/style.css"
 	type="text/css">
 <script type="text/javascript" src=view/purchase/cart/cart.js></script>
@@ -121,8 +119,7 @@
 											<td class="shoping__cart__quantity">${item.count}</td>
 											<td class="shoping__cart__total">${item.price * item.count}원</td>
 											<td>
-												<button class="shoping__cart__quantity__delete"
-													onclick="deleteRow(this, '${item.name}')">x</button>
+												<button class="shoping__cart__quantity__delete" onclick="deleteRow(event, this, '${item.name}')">x</button>
 											</td>
 										</tr>
 									</c:forEach>
@@ -144,7 +141,7 @@
 
 				<div class="shoping__checkout">
 					<h5>총 결제금액</h5>
-					<ul>	
+					<ul>
 						<li>금액에 변동이 없을 시 체크박스를 확인해주세요</li>
 						<li>총 결제금액 <span id="totalcost" class="currency-wrapper">0<span>원</span></span></li>
 					</ul>
