@@ -119,8 +119,7 @@
 											<td class="shoping__cart__quantity">${item.count}</td>
 											<td class="shoping__cart__total">${item.price * item.count}원</td>
 											<td>
-												<button class="shoping__cart__quantity__delete"
-													onclick="deleteRow(this), '${item.name}')">x</button>
+												<button class="shoping__cart__quantity__delete" onclick="deleteRow(event, this, '${item.name}')">x</button>
 											</td>
 										</tr>
 									</c:forEach>

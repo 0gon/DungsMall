@@ -55,8 +55,9 @@ var totalCostElement = document.getElementById('totalcost');
     }
 
 
-function deleteRow(button, itemName) {
-    // AJAX 요청으로 아이템 이름을 서버로 보냄
+function deleteRow(event, button, itemName) {
+    event.preventDefault();
+
     fetch('/DungsMall/cart.do', {
         method: 'POST',
         headers: {
@@ -65,10 +66,18 @@ function deleteRow(button, itemName) {
         body: `itemName=${encodeURIComponent(itemName)}`,
     })
     .then(response => {
-        // 응답 처리
         if (response.ok) {
-            // 행 삭제
+            // 삭제가 성공하면 행을 삭제하고 total cost 업데이트
             const row = button.closest('tr');
+            var itemPrice = parseInt(row.querySelector(".shoping__cart__price").textContent);
+            var itemCount = parseInt(row.querySelector(".shoping__cart__quantity").textContent);
+            var itemTotal = itemPrice * itemCount;
+
+            var totalCostElement = document.getElementById("totalcost");
+            var currentTotal = parseInt(totalCostElement.textContent);
+            var newTotal = Math.max(currentTotal - itemTotal, 0);
+            totalCostElement.textContent = newTotal + "원";
+
             row.remove();
         } else {
             console.error('Error deleting item');
@@ -77,23 +86,6 @@ function deleteRow(button, itemName) {
     .catch(error => {
         console.error('Error:', error);
     });
-	   // Find the parent row and remove it from the table
-    var row = button.parentNode.parentNode;
-    row.parentNode.removeChild(row);
-
-    // Update the total cost by subtracting the deleted item's cost from the current total
-    var itemPrice = parseInt(row.querySelector(".shoping__cart__price").textContent);
-    var itemCount = parseInt(row.querySelector(".shoping__cart__quantity").textContent);
-    var itemTotal = itemPrice * itemCount;
-
-    var totalCostElement = document.getElementById("totalcost");
-    var currentTotal = parseInt(totalCostElement.textContent);
-    
-    // Ensure the total cost doesn't go below 0
-    var newTotal = Math.max(currentTotal - itemTotal, 0);
-    
-    totalCostElement.textContent = newTotal + "원";
-	
 }
 
 function placeOrder(event) {
