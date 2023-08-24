@@ -8,15 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>장바구니</title>
-<link rel="stylesheet" href="view/purchase/cart/style.css"
-	type="text/css">
-<script type="text/javascript" src=view/purchase/cart/cart.js></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-	crossorigin="anonymous">
 <link rel="stylesheet" href="view/style/header.css">
+<link rel="stylesheet" href="view/purchase/cart/cartStyle.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
+<script type="text/javascript" src=view/purchase/cart/cart.js></script>
 </head>
 
 <body>
@@ -119,7 +116,8 @@
 											<td class="shoping__cart__quantity">${item.count}</td>
 											<td class="shoping__cart__total">${item.price * item.count}원</td>
 											<td>
-												<button class="shoping__cart__quantity__delete" onclick="deleteRow(event, this, '${item.name}')">x</button>
+												<button class="shoping__cart__quantity__delete"
+													onclick="deleteRow(event, this, '${item.name}')">x</button>
 											</td>
 										</tr>
 									</c:forEach>
@@ -146,7 +144,7 @@
 						<li>총 결제금액 <span id="totalcost" class="currency-wrapper">0<span>원</span></span></li>
 					</ul>
 					<div class="primary__btns">
-						<a href="/DungsMall/main.do" class="primary-btn cart-btn">쇼핑
+						<a href="/DungsMall/main.do" class="primary-btn checkout-btn">쇼핑
 							계속하기</a>
 
 						<!-- 여기에 테이블과 체크박스 등의 HTML 구조를 작성합니다. -->

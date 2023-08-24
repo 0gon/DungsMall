@@ -19,6 +19,7 @@ import item.model.Item;
 import util.dbutil.DBUtil;
 
 public class BasketDao {
+	
 	public List<BasketSub> select(Connection conn, String id) throws SQLException {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -27,7 +28,8 @@ public class BasketDao {
 			stmt = conn.prepareStatement("SELECT basket.member_id, basket.item_name, basket.count, item.price\r\n" + 
 					"FROM basket\r\n" + 
 					"JOIN item ON basket.item_name = item.name\r\n" + 
-					"WHERE basket.member_id = '"+id+"'");
+					"WHERE basket.member_id = ?");
+			stmt.setNString(1, id);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				String memberId = rs.getString("Member_id");
@@ -51,9 +53,9 @@ public class BasketDao {
 		try {
 
 			stmt = conn.prepareStatement("INSERT INTO receiptlist (member_ID, date) VALUES\r\n" + 
-					"('"+ member +"',"+"'"+ date +"');");
+					"( ?,"+"'"+ date +"');");
+			stmt.setNString(1, member);
 			return stmt.executeUpdate();
-
 		} finally {
 			DBUtil.close(stmt);
 		}
@@ -82,9 +84,12 @@ public class BasketDao {
 		PreparedStatement stmt = null;
 		try {
 
-			stmt = conn.prepareStatement("INSERT INTO receipt_detail values("+no+",'"+itemName+"',"+count+","+price+");" );
+			stmt = conn.prepareStatement("INSERT INTO receipt_detail values(?,?,?,?);" );
+			stmt.setInt(1, no);
+			stmt.setString(2, itemName);
+			stmt.setInt(3, count);
+			stmt.setInt(4, price);
 			return stmt.executeUpdate();
-
 		} finally {
 			DBUtil.close(stmt);
 		}
@@ -95,10 +100,10 @@ public class BasketDao {
 	public int delete(Connection conn, String member, String item) throws SQLException {
 		PreparedStatement stmt = null;
 		try {
-			stmt = conn.prepareStatement("DELETE FROM basket " + "WHERE member_id ='" + member
-					+ "' and item_name ='" + item + "'");
+			stmt = conn.prepareStatement("DELETE FROM basket " + "WHERE member_id = ? and item_name = ?");
 			
-			
+			stmt.setString(1, member);
+			stmt.setNString(2, item);
 			return stmt.executeUpdate(); 
 		} finally {
 			DBUtil.close(stmt);

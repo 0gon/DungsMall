@@ -180,6 +180,7 @@
                           name="submit"
                           value="addtocart"
                           formaction="/DungsMall/detail.do"
+                          onclick = "showAlert()"	
                         >
                           장바구니
                         </button>
