@@ -5,15 +5,6 @@
 ### 개발 기간
 *2023.08.17 ~ 2023.08.23*
 
-## 목차
-1장 기획 및 기능
-
-2장 사용 가이드
-
-3장 개발 환경
-
-4장 구조 설명
-
 ## 1장 기획 및 기능
 
 ### 기획
@@ -56,3 +47,9 @@
 
 ### DB - service - handler - view 
 <img src="https://github.com/0gon/foodChatBot/assets/130747714/a0763181-b65c-4eec-b505-1f2ff2a8a386">
+
+## 팀원소개
+[문태인](https://github.com/Moon-Taein)
+[김성우](https://github.com/KsW96)
+[김영곤](https://github.com/0gon)
+[이사라](https://github.com/LeeSara4)
