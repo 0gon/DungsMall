@@ -1,6 +1,6 @@
 # Dungs-mall
 ### maven + jsp 식재료 쇼핑몰
-[DUNGS](https://github.com/0gon/DungsMall)에게 추천받은 음식을 만드세요! **식재료 쇼핑몰** 
+[DUNGS](https://github.com/0gon/foodChatBot)에게 추천받은 음식을 만드세요! **식재료 쇼핑몰** 
 
 ### 개발 기간
 *2023.08.17 ~ 2023.08.23*
@@ -51,4 +51,8 @@
 </div>
 
 ## 4장 구조 설명
+### ERD
+<img src="https://github.com/0gon/foodChatBot/assets/130747714/fd80b6ea-43f9-42fe-a3ae-55f527f4b566">
+
 ### DB - service - handler - view 
+<img src="https://github.com/0gon/foodChatBot/assets/130747714/a0763181-b65c-4eec-b505-1f2ff2a8a386">
