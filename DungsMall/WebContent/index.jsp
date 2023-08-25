@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	hi
+	<% response.sendRedirect("http://localhost:8080/DungsMall/main.do"); %>
 </body>
 </html>
