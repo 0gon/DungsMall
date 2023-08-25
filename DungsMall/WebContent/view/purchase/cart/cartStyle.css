@@ -1,0 +1,237 @@
+/*---------------------
+  Shop Cart
+-----------------------*/
+.shoping-cart {
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+
+.shoping__cart__table {
+	margin-bottom: 30px;
+}
+
+.shoping__cart__table table {
+	width: 100%;
+	text-align: center;
+}
+
+.shoping__cart__table table thead tr {
+	border-bottom: 1px solid #ebebeb;
+}
+
+.shoping__cart__table table thead th {
+	font-size: 20px;
+	font-weight: 700;
+	color: #1c1c1c;
+	padding-bottom: 20px;
+}
+
+.shoping__cart__table table thead th.shoping__product {
+	text-align: left;
+}
+
+.shoping__cart__table table tbody tr td {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #ebebeb;
+}
+
+.shoping__cart__table table tbody tr td.shoping__cart__item {
+	width: 630px;
+	text-align: left;
+}
+
+.shoping__cart__table table tbody tr td.shoping__cart__item img {
+	display: inline-block;
+	margin-right: 25px;
+}
+
+.shoping__cart__table table tbody tr td.shoping__cart__item h5 {
+	color: #1c1c1c;
+	display: inline-block;
+}
+
+.shoping__cart__table table tbody tr td.shoping__cart__price {
+	font-size: 18px;
+	color: #1c1c1c;
+	font-weight: 700;
+	width: 100px;
+}
+
+.shoping__cart__table table tbody tr td.shoping__cart__total {
+	font-size: 18px;
+	color: #1c1c1c;
+	font-weight: 700;
+	width: 110px;
+}
+
+.shoping__cart__table table tbody tr td.shoping__cart__item__close {
+	text-align: right;
+}
+
+.shoping__cart__table table tbody tr td.shoping__cart__item__close span
+	{
+	font-size: 24px;
+	color: #b2b2b2;
+	cursor: pointer;
+}
+
+.shoping__cart__table table tbody tr td.shoping__cart__quantity {
+	width: 225px;
+}
+
+.shoping__cart__table table tbody tr td.shoping__cart__quantity .pro-qty
+	{
+	width: 120px;
+	height: 40px;
+}
+
+.shoping__cart__table table tbody tr td.shoping__cart__quantity .pro-qty input
+	{
+	color: #1c1c1c;
+}
+
+.shoping__cart__table table tbody tr td.shoping__cart__quantity .pro-qty input::placeholder
+	{
+	color: #1c1c1c;
+}
+
+.shoping__cart__table table tbody tr td.shoping__cart__quantity .pro-qty .qtybtn
+	{
+	width: 15px;
+}
+
+.quantity {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.pro-qty-minus, .pro-qty-plus {
+	border: none;
+	background: none;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.pro-qty-minus {
+	margin-right: 10px;
+}
+
+.pro-qty-plus {
+	margin-left: 10px;
+}
+
+.shoping__cart__quantity__delete{
+	background-color: white;
+	border: none;
+}
+
+#quantity1 {
+	width: 50px; /* 원하는 너비로 설정하세요 */
+	height: 30px; /* 원하는 높이로 설정하세요 */
+	text-align: center;
+	justify-content: center;
+}
+
+.primary-btn.cart-btn {
+	display: inline-block;
+	margin: 5px;
+	padding: 14px 30px 12px;
+	background: #70cbdb;
+	color: #6f6f6f;
+	border: none;
+	cursor: pointer;
+	font-size: 14px;
+	text-align: center;
+	text-decoration: none;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.shoping__checkout {
+	background: white;
+	padding: 50px;
+	padding-top: 20px;
+	margin-top: 50px;
+	border: solid 2px black;
+}
+
+.shoping__checkout h5 {
+	color: #1c1c1c;
+	font-weight: 700;
+	font-size: 20px;
+	margin-bottom: 28px;
+}
+
+.shoping__checkout ul {
+	margin-bottom: 28px;
+}
+
+.shoping__checkout ul li {
+	font-size: 16px;
+	color: #1c1c1c;
+	font-weight: 700;
+	list-style: none;
+	overflow: hidden;
+	border-bottom: 1px solid #ebebeb;
+	padding-bottom: 13px;
+	margin-bottom: 18px;
+}
+
+.shoping__checkout ul li:last-child {
+	padding-bottom: 0;
+	border-bottom: none;
+	margin-bottom: 0;
+}
+
+.shoping__checkout ul li span {
+	font-size: 18px;
+	color: #dd2222;
+	float: right;
+}
+
+/* 결제 버튼 스타일 설정 */
+.primary-btn.checkout-btn {
+	background-color: white;
+	color: #ffc107;
+	padding: 12px 30px;
+	font-size: 16px;
+	border-radius: 1px #ffc107;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	border-radius: 5px; /* 버튼 모서리를 둥글게 설정 */
+}
+
+.primary__btns {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.primary-btn.checkout-btn:hover {
+	background-color: #ffc107; /* 호버시 배경색 변경 */
+	color: white;
+}
+
+.shoping__cart__btns__selects {
+	display: flex;
+	justify-content: space-between;
+}
+
+/* 현재 스타일 */
+.shoping__cart__btns__allselect {
+	/* 이 부분을 추가하거나 수정하세요 */
+	background-color: white;
+	color: #ffc107;
+	padding: 8px 10px;
+	font-size: 16px;
+	border-radius: 1px #ffc107;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	border-radius: 5px; /* 버튼 모서리를 둥글게 설정 */
+}
+
+.shoping__cart__btns__allselect:hover {
+	/* 이 부분을 추가하거나 수정하세요 */
+	background-color: #ffc107; /* 호버시 배경색 변경 */
+	color: white;
+}

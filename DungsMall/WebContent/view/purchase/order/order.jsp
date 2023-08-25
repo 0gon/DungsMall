@@ -7,16 +7,13 @@
 <head>
 <meta charset="UTF-8" />
 <title>주문/결제</title>
-<link rel="stylesheet" href="view/purchase/order/bootstrap.min.css"
-	type="text/css">
-<link rel="stylesheet" href="view/purchase/order/style.css"
-	type="text/css" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-	crossorigin="anonymous">
+	rel="stylesheet">
 <link rel="stylesheet" href="view/style/header.css">
+<link rel="stylesheet" href="view/purchase/order/bootstrap.min.css"
+	type="text/css">
+<link rel="stylesheet" href="view/purchase/order/orderStyle.css"/>
 <script type="text/javascript" src=view/purchase/order/order.js>
 	
 </script>
@@ -89,59 +86,58 @@
 		</div>
 	</header>
 
-<form id="paymentForm" action="payment.do" method="post">
-	<!-- Shoping Cart Section Begin -->
-	<section class="shoping-cart spad">
-		<div class="container">
-			<h2>주문/결제</h2>
-			<hr />
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="shoping__cart__table">
-						<table>
-							<thead>
-								<tr>
-									<th class="shoping__product">제품 상세</th>
-									<th>가 격</th>
-									<th>개수(수량)</th>
-									<th>총 가격</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${basketCheckList}" var="item">
+	<form class="paymentForm" id="paymentForm" action="payment.do" method="post">
+		<!-- Shoping Cart Section Begin -->
+		<section class="shoping-cart spad">
+			<div class="container">
+				<h2>주문/결제</h2>
+				<hr />
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="shoping__cart__table">
+							<table>
+								<thead>
 									<tr>
-										<td class="shoping__cart__item">
-											<h5>${item.name}</h5>
-										</td>
-										<td class="shoping__cart__price">${item.price}원</td>
-										<td class="shoping__cart__quantity">${item.count}</td>
-										<td class="shoping__cart__total">${item.price * item.count}원</td>
-										<td></td>
+										<th class="shoping__product">제품 상세</th>
+										<th>가 격</th>
+										<th class="shoping__cart__quantity">개수(수량)</th>
+										<th>총 가격</th>
+										<th></th>
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									<c:forEach items="${basketCheckList}" var="item">
+										<tr>
+											<td class="shoping__cart__item">
+												<h5>${item.name}</h5>
+											</td>
+											<td class="shoping__cart__price">${item.price}원</td>
+											<td class="shoping__cart__quantity">${item.count}</td>
+											<td class="shoping__cart__total">${item.price * item.count}원</td>
+											<td></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<div class="shoping__checkout">
+					<h5>총 결제금액</h5>
+					<ul>
+						<li>총 결제금액 <span id="totalcost" class="currency-wrapper">0<span>원</span></span></li>
+					</ul>
+					<div class="primary__btns">
+						<input type="hidden" id="postDataInput" name="postData">
+						<!-- 주문하기 버튼을 클릭하면 JavaScript 함수를 실행하여 데이터를 전달합니다. -->
+						<button type="button" class="primary-btn checkout-btn"
+							onclick="placeOrder(event)">구매 하기</button>
+
 					</div>
 				</div>
 			</div>
-
-			<div class="shoping__cart__btns__selects"></div>
-
-			<div class="shoping__checkout">
-				<h5>총 결제금액</h5>
-				<ul>
-					<li>총 결제금액 <span id="totalcost" class="currency-wrapper">0<span>원</span></span></li>
-				</ul>
-				<div class="primary__btns">
-				<input type="hidden" id="postDataInput" name="postData">
-						<!-- 주문하기 버튼을 클릭하면 JavaScript 함수를 실행하여 데이터를 전달합니다. -->
-	<button type="button" class="primary-btn checkout-btn" onclick="placeOrder(event)">구매 하기</button>
-
-				</div>
-			</div>
-		</div>
-	</section>
+		</section>
 	</form>
 </body>
 </html>
