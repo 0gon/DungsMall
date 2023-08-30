@@ -81,7 +81,7 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                     <button type="button" id="goChat" class="btn btn-dark btn-lg"
-                        onclick="location.href='/foodChatBot/'">DUNG에게 음식 추천 받으러가기</button>
+                        onclick="location.href='#'">DUNG에게 음식 추천 받으러가기</button>
                 </div>
             </main>
             <section class="py-5">

@@ -14,16 +14,13 @@ public class MemberDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = conn.prepareStatement(
-					"select * from member where id = ?");
+			stmt = conn.prepareStatement("select * from member where id = ?");
 			stmt.setString(1, id);
 			rs = stmt.executeQuery();
 			Member member = null;
 			if (rs.next()) {
-				member = new Member(rs.getString("id"),
-									rs.getString("password"), 
-									rs.getString("name"), 
-									rs.getString("email"));
+				member = new Member(rs.getString("id"), rs.getString("password"), rs.getString("name"),
+						rs.getString("email"));
 			}
 			return member;
 		} finally {
@@ -31,13 +28,12 @@ public class MemberDao {
 			DBUtil.close(stmt);
 		}
 	}
-	
+
 	public int insert(Connection conn, Member member) throws SQLException {
 		PreparedStatement stmt = null;
 		try {
 			stmt = conn.prepareStatement(
-					"INSERT INTO `dungsmall`.`member` (`id`, `password`, `name`, `email`) "
-					+ "VALUES (?, ?, ?, ?);");
+					"INSERT INTO `dungsmall`.`member` (`id`, `password`, `name`, `email`) " + "VALUES (?, ?, ?, ?);");
 			stmt.setString(1, member.getId());
 			stmt.setString(2, member.getPassword());
 			stmt.setString(3, member.getName());
@@ -51,8 +47,7 @@ public class MemberDao {
 	public int updateSessionId(Connection conn, String sessionId, String id) throws SQLException {
 		PreparedStatement stmt = null;
 		try {
-			stmt = conn.prepareStatement(
-					"UPDATE `dungsmall`.`member` SET `sessionid` = ? WHERE (`id` = ?);");
+			stmt = conn.prepareStatement("UPDATE `dungsmall`.`member` SET `sessionid` = ? WHERE (`id` = ?);");
 			stmt.setString(1, sessionId);
 			stmt.setString(2, id);
 			return stmt.executeUpdate();
@@ -60,14 +55,30 @@ public class MemberDao {
 			DBUtil.close(stmt);
 		}
 	}
-	
+
 	public String selectIdBySessionId(Connection conn, String id) throws SQLException {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = conn.prepareStatement(
-					"select * from member where `sessionid` = ?");
+			stmt = conn.prepareStatement("select * from member where `sessionid` = ?");
 			stmt.setString(1, id);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				return rs.getString("id");
+			}
+			return "";
+		} finally {
+			DBUtil.close(rs);
+			DBUtil.close(stmt);
+		}
+	}
+
+	public String getBySessionId(Connection conn, String cookieValue) throws SQLException {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.prepareStatement("select * from member where `sessionid` = ?");
+			stmt.setString(1, cookieValue);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				return rs.getString("id");

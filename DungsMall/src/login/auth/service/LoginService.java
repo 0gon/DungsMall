@@ -42,4 +42,13 @@ public class LoginService {
 		String id = user.getId();
 		memberDao.updateSessionId(conn, sessionId, id);
 	}
+
+	public void deleteSessionId(String cookieValue) {
+		try (Connection conn = DBUtil.getConnection();) {
+			String id = memberDao.getBySessionId(conn, cookieValue);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
 }
