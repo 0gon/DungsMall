@@ -39,21 +39,31 @@ public class ReceiptHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		setItem(req, res);
-		return FORM_VIEW;
+		if (req.getAttribute("login") != null) {
+			setItem(req, res);
+			return FORM_VIEW;
+		} else {
+			try {
+				res.sendRedirect("/DungsMall/login.do");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
 	}
-	
+
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		return FORM_VIEW;
 	}
-	
+
 	private void setItem(HttpServletRequest req, HttpServletResponse res) {
 		List<ReceiptList> list = new ArrayList<>();
 		List<ReceiptDetail> foods = null;
 		try (Connection conn = DBUtil.getConnection()) {
-			String id = mDao.selectIdBySessionId(conn, (String)req.getAttribute("sessionId"));
+			String id = mDao.selectIdBySessionId(conn, (String) req.getAttribute("sessionId"));
 			list = dao.getList(conn, id);
-			for(int i = 0; i < list.size(); i++) {
+			for (int i = 0; i < list.size(); i++) {
 				foods = new ArrayList<>();
 				ReceiptList receipt = list.get(i);
 				foods = dao.getDetail(conn, receipt.getNo());
@@ -66,7 +76,7 @@ public class ReceiptHandler implements CommandHandler {
 		req.setAttribute("total", getTotal(list));
 		req.setAttribute("list", list);
 	}
-	
+
 	private List<Integer> getTotal(List<ReceiptList> receipt) {
 		List<Integer> totals = new ArrayList<>();
 		for (ReceiptList list : receipt) {
@@ -78,7 +88,7 @@ public class ReceiptHandler implements CommandHandler {
 		}
 		return totals;
 	}
-	
+
 	private void setItemDetails(Connection conn, List<ReceiptDetail> details) throws SQLException {
 		for (int i = 0; i < details.size(); i++) {
 			ReceiptDetail detail = details.get(i);

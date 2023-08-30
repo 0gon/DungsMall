@@ -1,5 +1,6 @@
 package cart.command;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,9 +41,18 @@ public class CartHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws UnsupportedEncodingException {
-		
-		setItem(req, res);
-		return FORM_VIEW;
+		if (req.getAttribute("login") != null) {
+			setItem(req, res);
+			return FORM_VIEW;
+		} else {
+			try {
+				res.sendRedirect("/DungsMall/login.do");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
 	}
 
 	private void setItem(HttpServletRequest req, HttpServletResponse res) throws UnsupportedEncodingException {
