@@ -41,7 +41,10 @@
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 </div>
 
-## 4장 구조 설명
+## 4장 화면 구성
+### [wiki](https://github.com/0gon/DungsMall/wiki)에서 확인
+
+## 5장 구조 설명
 ### ERD
 <img src="https://github.com/0gon/foodChatBot/assets/130747714/fd80b6ea-43f9-42fe-a3ae-55f527f4b566">
 
@@ -49,7 +52,11 @@
 <img src="https://github.com/0gon/foodChatBot/assets/130747714/a0763181-b65c-4eec-b505-1f2ff2a8a386">
 
 ## 팀원소개
-[문태인](https://github.com/Moon-Taein)
-[김성우](https://github.com/KsW96)
-[김영곤](https://github.com/0gon)
-[이사라](https://github.com/LeeSara4)
+<table>
+  <tbody>
+    <td align="center"><a href="https://github.com/KsW96"><img src="https://avatars.githubusercontent.com/u/134483514?v=4" width="100px;" alt=""/><br /><sub><b>김성우</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/0gon"><img src="https://avatars.githubusercontent.com/u/130747742?v=4" width="100px;" alt=""/><br /><sub><b>김영곤</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/Moon-Taein"><img src="https://avatars.githubusercontent.com/u/51267486?v=4" width="100px;" alt=""/><br /><sub><b>문태인</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/LeeSara4"><img src="https://avatars.githubusercontent.com/u/130747714?v=4" width="100px;" alt=""/><br /><sub><b>이사라</b></sub></a><br /></td>
+  </tbody>
+</table>
