@@ -45,7 +45,7 @@ public class LoginService {
 
 	public void deleteSessionId(String cookieValue) {
 		try (Connection conn = DBUtil.getConnection();) {
-			String id = memberDao.getBySessionId(conn, cookieValue);
+			memberDao.deletBySessionId(conn, cookieValue);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException();

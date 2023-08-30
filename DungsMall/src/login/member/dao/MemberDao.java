@@ -73,19 +73,13 @@ public class MemberDao {
 		}
 	}
 
-	public String getBySessionId(Connection conn, String cookieValue) throws SQLException {
+	public void deletBySessionId(Connection conn, String cookieValue) throws SQLException {
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		try {
-			stmt = conn.prepareStatement("select * from member where `sessionid` = ?");
+			stmt = conn.prepareStatement("UPDATE `dungsmall`.`member` SET `sessionid` = null WHERE (`sessionid` = ?);");
 			stmt.setString(1, cookieValue);
-			rs = stmt.executeQuery();
-			if (rs.next()) {
-				return rs.getString("id");
-			}
-			return "";
+			stmt.executeUpdate();
 		} finally {
-			DBUtil.close(rs);
 			DBUtil.close(stmt);
 		}
 	}
