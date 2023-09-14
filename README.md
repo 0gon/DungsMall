@@ -49,8 +49,8 @@
 ### ERD
 <img src="https://github.com/0gon/foodChatBot/assets/130747714/fd80b6ea-43f9-42fe-a3ae-55f527f4b566">
 
-### DB - service - handler - view 
-<img src="https://github.com/0gon/foodChatBot/assets/130747714/a0763181-b65c-4eec-b505-1f2ff2a8a386">
+### DB - Service - Handler - View 
+![image](https://github.com/KsW96/DungsMall/assets/134483514/78fd1537-b5bf-426a-aa3b-1676efc96f0b)
 
 ## 팀원소개
 <table>
